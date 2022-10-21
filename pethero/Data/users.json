@@ -10,5 +10,11 @@
         "username": "keeper",
         "password": "keeper",
         "userTypeId": 3
+    },
+    {
+        "id": 3,
+        "username": "owner",
+        "password": "owner",
+        "userTypeId": 2
     }
 ]

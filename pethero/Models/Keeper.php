@@ -12,7 +12,7 @@ class Keeper
     private $price;
     private $startDate;
     private $endDate;
-    private $days = array();
+    private $days;
     private $user;
 
     /**
@@ -213,6 +213,26 @@ class Keeper
         $this->user = $user;
 
         return $this;
+    }
+
+    public function checkSizePet($size){
+        return in_array($size, $this->sizePet);
+    }
+
+    public function descriptionSizePet(){
+        $description = '';
+        if($this->checkSizePet('Small')){
+            $description = $description . '[ Small ] '; 
+        }
+
+        if($this->checkSizePet('Medium')){
+            $description = $description . '[ Medium ] '; 
+        }
+
+        if($this->checkSizePet('Big')){
+            $description = $description . '[ Big ] '; 
+        }
+        return $description;
     }
 
     public function __toString()

@@ -104,6 +104,11 @@ class User
                 return $this->usertype->getType() == 'Admin';
         }
 
+        public function getRole()
+        {
+                return $this->usertype->getType();
+        }
+
         public function __toString()
         {
                 return $this->username;

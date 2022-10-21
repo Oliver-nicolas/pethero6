@@ -38,12 +38,35 @@
         public function Update(Keeper $keeper)
         {
             $this->RetrieveData();
+            
+            $index = $this->GetIndex($keeper->getId());
 
-            $keeper->setId($this->GenerateId());
-            array_push($this->keeperList, $keeper);
+            $this->keeperList[$index] = $keeper;
 
             $this->SaveData();
             return true;
+        }
+
+        public function Search($id){
+            $this->RetrieveData();
+
+            foreach($this->keeperList as $keeper){
+                if($keeper->getId() == $id){
+                    return $keeper;
+                }
+            }
+            return null;
+        }
+
+        function SearchByUserId($userId){
+            $this->RetrieveData();
+
+            foreach($this->keeperList as $keeper){
+                if($keeper->getUser()->getId() == $userId){
+                    return $keeper;
+                }
+            }
+            return null;
         }
 
         public function GetAll()
@@ -51,6 +74,16 @@
             $this->RetrieveData();
 
             return $this->keeperList;
+        }
+
+        private function GetIndex($id){
+            $registers = count($this->keeperList);
+            for ($i=0; $i < $registers; $i++) { 
+                if($this->keeperList[$i]->getId() == $id){
+                    return $i;
+                }
+            }
+            return -1;
         }
         
         private function SaveData()
@@ -100,7 +133,7 @@
                     $keeper->setStartDate($valuesArray["startDate"]);
                     $keeper->setEndDate($valuesArray["endDate"]);
                     $keeper->setDays($valuesArray["days"]);
-                    $keeper->setUser($this->userDAO->Search($valuesArray["UserId"]));
+                    $keeper->setUser($this->userDAO->Search($valuesArray["userId"]));
 
                     array_push($this->keeperList, $keeper);
                 }

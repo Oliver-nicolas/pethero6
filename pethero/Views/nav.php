@@ -12,20 +12,39 @@
           if ($user != null) {
                if ($user->isAdmin()) {
                } elseif ($user->isKeeper()) {
+               ?>
+                    <li class="nav-item">
+                         <a class="nav-link" href="<?= FRONT_ROOT ?>Keeper/ShowPerfil">@<?= $user->getUsername() ?></a>
+                    </li>
+               <?php
                } elseif ($user->isOwner()) {
+               ?>
+                    <li class="nav-item">
+                         <a class="nav-link" href="#">@<?= $user->getUsername() ?></a>
+                    </li>
+                    <li class="nav-item">
+                         <a class="nav-link" href="<?= FRONT_ROOT ?>Owner/ShowMyPets">My Pets</a>
+                    </li>
+                    <li class="nav-item">
+                         <a class="nav-link" href="<?= FRONT_ROOT ?>Owner/ShowNewPet">New Pet</a>
+                    </li>
+                    <li class="nav-item">
+                         <a class="nav-link" href="<?= FRONT_ROOT ?>Owner/ShowListKeepers">List Keepers</a>
+                    </li>
+               <?php
                }
-          ?>
+               ?>
                <li class="nav-item">
-                    <a class="nav-link" href="<?php echo FRONT_ROOT ?>User/Logout">Cerrar Sesión</a>
+                    <a class="nav-link" href="<?= FRONT_ROOT ?>User/Logout">Cerrar Sesión</a>
                </li>
           <?php
           } else {
           ?>
                <li class="nav-item">
-                    <a class="nav-link" href="<?php echo FRONT_ROOT ?>User/ShowLogin">Login</a>
+                    <a class="nav-link" href="<?= FRONT_ROOT ?>User/ShowLogin">Login</a>
                </li>
                <li class="nav-item">
-                    <a class="nav-link" href="<?php echo FRONT_ROOT ?>User/ShowRegister">Register</a>
+                    <a class="nav-link" href="<?= FRONT_ROOT ?>User/ShowRegister">Register</a>
                </li>
 
           <?php } ?>

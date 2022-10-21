@@ -5,6 +5,7 @@ namespace Controllers;
 use DAO\UserDAO as UserDAO;
 use DAO\UserTypeDAO as UserTypeDAO;
 use DAO\KeeperDAO as KeeperDAO;
+use DAO\OwnerDAO as OwnerDAO;
 use Models\User as User;
 use Models\Owner as Owner;
 use Models\Keeper as Keeper;
@@ -14,12 +15,14 @@ class UserController
     private $userDAO;
     private $userTypeDAO;
     private $keeperDAO;
+    private $ownerDAO;
 
     public function __construct()
     {
         $this->userDAO = new UserDAO();
         $this->userTypeDAO = new UserTypeDAO();
         $this->keeperDAO = new KeeperDAO();
+        $this->ownerDAO = new OwnerDAO();
     }
 
     public function ShowLogin()
@@ -36,11 +39,11 @@ class UserController
             $_SESSION['user'] = $user;
 
             if ($user->isOwner()) {
-                header('Location: ../Owner/ShowListView');
+                header('Location: ../Owner/ShowMyPets');
             } elseif ($user->isKeeper()) {
-                header('Location: ../Keeper/ShowListView');
+                header('Location: ../Keeper/ShowPerfil');
             } elseif ($user->isAdmin()) {
-                header('Location: ../Admin/ShowListView');
+                header('Location: ../Admin/');
             }
 
             return;
@@ -75,6 +78,8 @@ class UserController
                     $owner->setLastname($lastName);
                     $owner->setAddress($address);
                     $owner->setUser($user);
+
+                    $this->ownerDAO->Add($owner);
                 } elseif ($user->getUsertype()->getType() == 'Keeper') {
                     $keeper = new Keeper();
                     $keeper->setName($name);

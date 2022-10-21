@@ -1,13 +1,12 @@
 <?php
     namespace DAO;
 
-    use Models\Keeper as Keeper;
+    use Models\Owner as Owner;
 
-    interface IKeeperDAO
+    interface IOwnerDAO
     {
         function GenerateId();
-        function Add(Keeper $student);
-        function Update(Keeper $student);
+        function Add(Owner $student);
         function Search($id);
         function SearchByUserId($userId);
         function GetAll();

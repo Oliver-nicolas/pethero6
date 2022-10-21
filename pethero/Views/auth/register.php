@@ -17,14 +17,14 @@ require_once(VIEWS_PATH . 'nav.php');
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label for="">Name</label>
-                            <input type="text" name="name" value="" class="form-control">
+                            <label for="">Name <strong class="text-danger">*</strong></label>
+                            <input type="text" name="name" value="" class="form-control" required>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label for="">Lastname</label>
-                            <input type="text" name="lastname" value="" class="form-control">
+                            <label for="">Lastname <strong class="text-danger">*</strong></label>
+                            <input type="text" name="lastname" value="" class="form-control" required>
                         </div>
                     </div>
                 </div>
@@ -32,8 +32,8 @@ require_once(VIEWS_PATH . 'nav.php');
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="form-group">
-                            <label for="">Address</label>
-                            <input type="text" name="address" value="" class="form-control">
+                            <label for="">Address <strong class="text-danger">*</strong></label>
+                            <input type="text" name="address" value="" class="form-control" required>
                         </div>
                     </div>
                 </div>
@@ -41,14 +41,14 @@ require_once(VIEWS_PATH . 'nav.php');
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label for="">Username</label>
-                            <input type="text" name="username" value="" class="form-control">
+                            <label for="">Username <strong class="text-danger">*</strong></label>
+                            <input type="text" name="username" value="" class="form-control" required>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label for="">Password</label>
-                            <input type="password" name="password" value="" class="form-control">
+                            <label for="">Password <strong class="text-danger">*</strong></label>
+                            <input type="password" name="password" value="" class="form-control" required>
                         </div>
                     </div>
                 </div>
@@ -56,8 +56,8 @@ require_once(VIEWS_PATH . 'nav.php');
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label for="">User type</label>
-                            <select name="usertype" class="form-control">
+                            <label for="">User type <strong class="text-danger">*</strong></label>
+                            <select name="usertype" class="form-control" required>
                                 <?php
                                 foreach ($usertypes as $item) {
                                     if ($item->getType() != 'Admin') {

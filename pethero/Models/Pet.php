@@ -5,13 +5,14 @@ namespace Models;
 class Pet
 {
     private $id;
-    private $foto;
-    private $raza;
-    private $tamano;
-    private $plan_vacunacion;
-    private $observaciones_generales;
+    private $image;
+    private $race;
+    private $size;
+    private $vaccination_plan;
+    private $observations;
     private $video;
     private $owner;
+    
 
     /**
      * Get the value of id
@@ -34,101 +35,101 @@ class Pet
     }
 
     /**
-     * Get the value of foto
+     * Get the value of image
      */ 
-    public function getFoto()
+    public function getImage()
     {
-        return $this->foto;
+        return $this->image;
     }
 
     /**
-     * Set the value of foto
+     * Set the value of image
      *
      * @return  self
      */ 
-    public function setFoto($foto)
+    public function setImage($image)
     {
-        $this->foto = $foto;
+        $this->image = $image;
 
         return $this;
     }
 
     /**
-     * Get the value of raza
+     * Get the value of race
      */ 
-    public function getRaza()
+    public function getRace()
     {
-        return $this->raza;
+        return $this->race;
     }
 
     /**
-     * Set the value of raza
+     * Set the value of race
      *
      * @return  self
      */ 
-    public function setRaza($raza)
+    public function setRace($race)
     {
-        $this->raza = $raza;
+        $this->race = $race;
 
         return $this;
     }
 
     /**
-     * Get the value of tamano
+     * Get the value of size
      */ 
-    public function getTamano()
+    public function getSize()
     {
-        return $this->tamano;
+        return $this->size;
     }
 
     /**
-     * Set the value of tamano
+     * Set the value of size
      *
      * @return  self
      */ 
-    public function setTamano($tamano)
+    public function setSize($size)
     {
-        $this->tamano = $tamano;
+        $this->size = $size;
 
         return $this;
     }
 
     /**
-     * Get the value of plan_vacunacion
+     * Get the value of vaccination_plan
      */ 
-    public function getPlan_vacunacion()
+    public function getVaccination_plan()
     {
-        return $this->plan_vacunacion;
+        return $this->vaccination_plan;
     }
 
     /**
-     * Set the value of plan_vacunacion
+     * Set the value of vaccination_plan
      *
      * @return  self
      */ 
-    public function setPlan_vacunacion($plan_vacunacion)
+    public function setVaccination_plan($vaccination_plan)
     {
-        $this->plan_vacunacion = $plan_vacunacion;
+        $this->vaccination_plan = $vaccination_plan;
 
         return $this;
     }
 
     /**
-     * Get the value of observaciones_generales
+     * Get the value of observations
      */ 
-    public function getObservaciones_generales()
+    public function getObservations()
     {
-        return $this->observaciones_generales;
+        return $this->observations;
     }
 
     /**
-     * Set the value of observaciones_generales
+     * Set the value of observations
      *
      * @return  self
      */ 
-    public function setObservaciones_generales($observaciones_generales)
+    public function setObservations($observations)
     {
-        $this->observaciones_generales = $observaciones_generales;
+        $this->observations = $observations;
 
         return $this;
     }
@@ -153,8 +154,6 @@ class Pet
         return $this;
     }
 
-    
-
     /**
      * Get the value of owner
      */ 
@@ -177,6 +176,6 @@ class Pet
 
     public function __toString()
     {
-        return $this->id . ' - ' . $this->raza;
+        return $this->id . ' - ' . $this->race;
     }
 }

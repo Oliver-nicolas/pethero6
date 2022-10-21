@@ -3,12 +3,15 @@
         "id": 1,
         "name": "Anna",
         "lastname": "Gutierrez",
-        "address": "Av",
-        "sizePet": [],
-        "price": null,
-        "startDate": null,
-        "endDate": null,
-        "days": [],
+        "address": "Av 123",
+        "sizePet": [
+            "Small",
+            "Medium"
+        ],
+        "price": "100",
+        "startDate": "2022-10-21",
+        "endDate": "2022-10-29",
+        "days": "",
         "userId": 2
     }
 ]

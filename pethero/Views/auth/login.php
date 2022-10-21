@@ -16,13 +16,13 @@ require_once(VIEWS_PATH . 'nav.php');
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label for="">Username</label>
-                            <input type="text" name="username" value="" class="form-control">
+                            <input type="text" name="username" value="" class="form-control" required>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label for="">Password</label>
-                            <input type="password" name="password" value="" class="form-control">
+                            <input type="password" name="password" value="" class="form-control" required>
                         </div>
                     </div>
                 </div>
