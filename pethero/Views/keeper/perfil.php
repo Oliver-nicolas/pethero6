@@ -48,13 +48,24 @@ require_once(VIEWS_PATH . 'nav.php');
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label for="">Start Date <strong class="text-danger">*</strong></label>
-                            <input type="date" name="startDate" value="<?= $keeper->getStartdate() ?>" class="form-control" required>
+                            <input type="date" name="startDate" max="<?= $keeper->getEndDate()?>" min="<?php echo date('Y-m-d') ?>" value="<?= $keeper->getStartdate() ?>" class="form-control" required>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label for="">End Date <strong class="text-danger">*</strong></label>
-                            <input type="date" name="endDate" value="<?= $keeper->getEndDate() ?>" class="form-control" required>
+                                <?php
+                                if ($keeper->getStartDate()!=null) {
+                                ?>
+                                    <input type="date" name="endDate" min="<?=$keeper->getStartdate()?>" value="<?= $keeper->getEndDate() ?>" class="form-control" required>
+                                <?php
+                                } else {
+                                ?>
+                                    <input type="date" name="endDate" min="<?php echo date('Y-m-d') ?>" value="<?= $keeper->getEndDate() ?>" class="form-control" required>
+                                <?php
+                                }
+                                ?>
+                            
                         </div>
                     </div>
                 </div>
@@ -119,11 +130,20 @@ require_once(VIEWS_PATH . 'nav.php');
                     </div>
                 </div>
 
+                <?php
+                /*
+                               $date1=date_create($keeper->getStartDate());
+                                $date2=date_create($keeper->getEndDate());
+                                if ($diff=date_diff($date1,$date2)==false) {
+                                    $keeper->setEndDate($keeper->getStartDate());
+                                }
+                                */
+                                ?>
                 <button type="submit" class="btn btn-dark ml-auto d-block">Update</button>
 
             </form>
 
-
+            
         </div>
     </section>
 </main>

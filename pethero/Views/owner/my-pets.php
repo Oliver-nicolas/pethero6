@@ -25,7 +25,7 @@ require_once(VIEWS_PATH . 'nav.php');
                                 <td><?= $item->getRace() ?></td>
                                 <td><?= $item->getSize() ?></td>
                                 <td><?= $item->getObservations() ?></td>
-                                <td><img src="<?= FRONT_ROOT . UPLOADS_PATH . $item->getImage() ?>" alt="" width="100"></td>
+                                <td><img src="<?= FRONT_ROOT . UPLOADS_PATH . $item->getVaccination_plan() ?>" alt="" width="100"></td>
                                 <td>
                                     <?php
                                     if ($item->getVideo() == null) {
@@ -34,7 +34,7 @@ require_once(VIEWS_PATH . 'nav.php');
                                     <?php
                                     } else {
                                     ?>
-                                        <a href="<?= FRONT_ROOT . UPLOADS_PATH . $item->getVideo() ?>">Ver video</a>
+                                        <a href="<?= FRONT_ROOT . UPLOADS_PATH . $item->getVideo() ?>">Watch Video</a>
                                     <?php
                                     }
                                     ?>
