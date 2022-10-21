@@ -1,0 +1,14 @@
+[
+    {
+        "id": 1,
+        "name": "Anna",
+        "lastname": "Gutierrez",
+        "address": "Av",
+        "sizePet": [],
+        "price": null,
+        "startDate": null,
+        "endDate": null,
+        "days": [],
+        "userId": 2
+    }
+]
