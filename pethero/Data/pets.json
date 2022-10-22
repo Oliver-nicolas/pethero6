@@ -1,3 +1,12 @@
 [
-    
+    {
+        "id": 1,
+        "race": "asd",
+        "size": "Small",
+        "observations": "asd",
+        "image": "2022102212045300000024-potato-air-anime.jpg",
+        "vaccinationPlan": "20221022120453000000descarga.jfif",
+        "video": "20221022120453000000puppy.mp4",
+        "ownerId": 3
+    }
 ]

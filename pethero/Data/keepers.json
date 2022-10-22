@@ -13,5 +13,20 @@
         "endDate": "2022-10-29",
         "days": "",
         "userId": 2
+    },
+    {
+        "id": 2,
+        "name": "keep",
+        "lastname": "keep",
+        "address": "keep",
+        "sizePet": [
+            "Small",
+            "Medium"
+        ],
+        "price": "200",
+        "startDate": "2022-10-22",
+        "endDate": "2022-10-30",
+        "days": "4",
+        "userId": 6
     }
 ]
