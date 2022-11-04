@@ -39,7 +39,7 @@ class UserController
             $_SESSION['user'] = $user;
 
             if ($user->isOwner()) {
-                header('Location: ../Owner/ShowMyPets');
+                header('Location: ../Owner/ShowPerfil');
             } elseif ($user->isKeeper()) {
                 header('Location: ../Keeper/ShowPerfil');
             } elseif ($user->isAdmin()) {
@@ -58,7 +58,7 @@ class UserController
         require_once(VIEWS_PATH . "auth/register.php");
     }
 
-    public function Register($name, $lastName, $address, $username, $password, $userTypeId)
+    public function Register($name, $lastname, $address, $username, $password, $usertype)
     {
         unset($_SESSION['error']);
         unset($_SESSION['success']);
@@ -68,14 +68,14 @@ class UserController
             $user = new User();
             $user->setUsername($username);
             $user->setPassword($password);
-            $user->setUsertype($this->userTypeDAO->Search($userTypeId));
+            $user->setUsertype($this->userTypeDAO->Search($usertype));
 
             if ($this->userDAO->Add($user)) {
 
                 if ($user->getUsertype()->getType() == 'Owner') {
                     $owner = new Owner();
                     $owner->setName($name);
-                    $owner->setLastname($lastName);
+                    $owner->setLastname($lastname);
                     $owner->setAddress($address);
                     $owner->setUser($user);
 
@@ -83,7 +83,7 @@ class UserController
                 } elseif ($user->getUsertype()->getType() == 'Keeper') {
                     $keeper = new Keeper();
                     $keeper->setName($name);
-                    $keeper->setLastname($lastName);
+                    $keeper->setLastname($lastname);
                     $keeper->setAddress($address);
                     $keeper->setUser($user);
 

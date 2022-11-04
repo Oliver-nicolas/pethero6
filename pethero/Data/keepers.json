@@ -28,5 +28,17 @@
         "endDate": "2022-10-30",
         "days": "4",
         "userId": 6
+    },
+    {
+        "id": 3,
+        "name": "Marco",
+        "lastname": "Tarchini",
+        "address": "Camet 2309",
+        "sizePet": [],
+        "price": null,
+        "startDate": null,
+        "endDate": null,
+        "days": null,
+        "userId": 7
     }
 ]

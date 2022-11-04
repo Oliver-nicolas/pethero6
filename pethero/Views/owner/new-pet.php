@@ -4,7 +4,7 @@ require_once(VIEWS_PATH . 'nav.php');
 <main class="py-5">
     <section id="listado" class="mb-5">
         <div class="container">
-            <h2 class="mb-4">New Pet</h2>
+            <h2 class="mb-4">Nueva mascota</h2>
             <form action="<?php echo FRONT_ROOT ?>Owner/AddPet" method="post" class="bg-light-alpha p-5" enctype="multipart/form-data">
                 <?php if (isset($_SESSION['error'])) { ?>
                     <div class="alert alert-danger alert-dismissable">
@@ -23,17 +23,17 @@ require_once(VIEWS_PATH . 'nav.php');
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label for="">Race <strong class="text-danger">*</strong></label>
+                            <label for="">Raza <strong class="text-danger">*</strong></label>
                             <input type="text" name="race" class="form-control" required>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label for="">Size <strong class="text-danger">*</strong></label>
+                            <label for="">Tamaño <strong class="text-danger">*</strong></label>
                             <select name="size" class="form-control">
-                                <option value="Small">Small</option>
-                                <option value="Medium">Medium</option>
-                                <option value="Big">Big</option>
+                                <option value="Small">Pequeño</option>
+                                <option value="Medium">Mediano</option>
+                                <option value="Big">Grande</option>
                             </select>
                         </div>
                     </div>
@@ -42,7 +42,7 @@ require_once(VIEWS_PATH . 'nav.php');
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="form-group">
-                            <label for="">Observations <strong class="text-danger">*</strong></label>
+                            <label for="">Observaciones <strong class="text-danger">*</strong></label>
                             <textarea name="observations" rows="5" class="form-control"></textarea>
                         </div>
                     </div>
@@ -51,7 +51,7 @@ require_once(VIEWS_PATH . 'nav.php');
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="form-group">
-                            <label for="">Image <strong class="text-danger">*</strong></label>
+                            <label for="">Imagen <strong class="text-danger">*</strong></label>
                             <input type="file" name="image" class="form-control" required>
                         </div>
                     </div>
@@ -60,7 +60,7 @@ require_once(VIEWS_PATH . 'nav.php');
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="form-group">
-                            <label for="">Vaccination plan <strong class="text-danger">*</strong></label>
+                            <label for="">Plan de vacunación <strong class="text-danger">*</strong></label>
                             <input type="file" name="vaccination_plan" class="form-control" required>
                         </div>
                     </div>
@@ -75,7 +75,7 @@ require_once(VIEWS_PATH . 'nav.php');
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-dark ml-auto d-block">Add Pet</button>
+                <button type="submit" class="btn btn-dark ml-auto d-block">Ingresar Mascota</button>
 
             </form>
 

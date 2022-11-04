@@ -1,0 +1,14 @@
+[
+    {
+        "id": 1,
+        "type": "Small"
+    },
+    {
+        "id": 2,
+        "type": "Medium"
+    },
+    {
+        "id": 3,
+        "type": "Large"
+    }
+]

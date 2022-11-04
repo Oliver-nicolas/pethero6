@@ -1,12 +1,12 @@
 <?php
     namespace DAO;
 
-    use Models\Owner as Owner;
+    use Models\Reserve as Reserve;
 
-    interface IOwnerDAO
+    interface IReserveDAO
     {
         function GenerateId();
-        function Add(Owner $owner);
+        function Add(Reserve $reserve);
         function Search($id);
         function SearchByUserId($userId);
         function GetAll();

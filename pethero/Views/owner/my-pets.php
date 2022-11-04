@@ -4,16 +4,16 @@ require_once(VIEWS_PATH . 'nav.php');
 <main class="py-5">
     <section id="listado" class="mb-5">
         <div class="container-fluid">
-            <h2 class="mb-4">My Pets</h2>
+            <h2 class="mb-4">Mi mascota</h2>
 
             <div class="bg-light-alpha p-5">
                 <table class="table">
                     <thead>
-                        <th>Image</th>
-                        <th>Race</th>
-                        <th>Size</th>
-                        <th>Observations</th>
-                        <th>Vaccination plan</th>
+                        <th>Imagen</th>
+                        <th>Raza</th>
+                        <th>Tamaño</th>
+                        <th>Observaciones</th>
+                        <th>Plan de vacunación</th>
                         <th>Video</th>
                     </thead>
                     <tbody>
@@ -34,7 +34,7 @@ require_once(VIEWS_PATH . 'nav.php');
                                     <?php
                                     } else {
                                     ?>
-                                        <a href="<?= FRONT_ROOT . UPLOADS_PATH . $item->getVideo() ?>">Watch Video</a>
+                                        <a href="<?= FRONT_ROOT . UPLOADS_PATH . $item->getVideo() ?>">Mirar Video</a>
                                     <?php
                                     }
                                     ?>
@@ -43,8 +43,14 @@ require_once(VIEWS_PATH . 'nav.php');
                         <?php
                         }
                         ?>
+                        
                     </tbody>
                 </table>
+                    <br>
+                    <li class="nav-item">
+                         <a class="btn btn-dark ml-auto d-block" href="<?= FRONT_ROOT ?>owner/ShowNewPet">Nueva mascota</a>
+                    </li>
+                    <br>
             </div>
         </div>
     </section>

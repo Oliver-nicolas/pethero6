@@ -8,5 +8,25 @@
         "vaccinationPlan": "20221022120453000000descarga.jfif",
         "video": "20221022120453000000puppy.mp4",
         "ownerId": 3
+    },
+    {
+        "id": 2,
+        "race": "Terbal",
+        "size": "Small",
+        "observations": "come mucho",
+        "image": "2022110407464000000020181129_120744.jpg",
+        "vaccinationPlan": "20221104074640000000calendario-vacunacion-gatos-web.jpg",
+        "video": null,
+        "ownerId": 4
+    },
+    {
+        "id": 3,
+        "race": "Terbal",
+        "size": "Small",
+        "observations": "come mucho",
+        "image": "2022110407513200000020181129_120744.jpg",
+        "vaccinationPlan": "20221104075132000000calendario-vacunacion-gatos-web.jpg",
+        "video": null,
+        "ownerId": 4
     }
 ]

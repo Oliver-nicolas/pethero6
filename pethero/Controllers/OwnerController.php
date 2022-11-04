@@ -25,6 +25,18 @@ class OwnerController
         $this->userLogged = $_SESSION['user'];
     }
 
+    public function ShowPerfil()
+    {
+        $owner = $this->ownerDAO->SearchByUserId($this->userLogged->getId());
+        require_once(VIEWS_PATH . "owner/mainOwner.php");
+    }
+
+    public function ShowModifyPerfil()
+    {
+        $owner = $this->ownerDAO->SearchByUserId($this->userLogged->getId());
+        require_once(VIEWS_PATH . "auth/register.php");
+    }
+
     public function ShowMyPets()
     {
         $owner = $this->ownerDAO->SearchByUserId($this->userLogged->getId());
@@ -103,7 +115,7 @@ class OwnerController
         } catch (\Throwable $th) {
             $_SESSION['error'] = 'Exception. ' . $th->getMessage();
         }
-        $this->ShowNewPet();
+        $this->ShowMyPets();
     }
 
     public function ShowListKeepers()
