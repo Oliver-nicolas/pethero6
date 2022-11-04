@@ -4,7 +4,7 @@ require_once(VIEWS_PATH . 'nav.php');
 <main class="py-5">
     <section id="listado" class="mb-5">
         <div class="container">
-            <h2 class="mb-4">My Perfil</h2>
+            <h2 class="mb-4">PERFIL DE GUARDIAN</h2>
             <form action="<?php echo FRONT_ROOT ?>Keeper/Update" method="post" class="bg-light-alpha p-5">
                 <?php if (isset($_SESSION['error'])) { ?>
                     <div class="alert alert-danger alert-dismissable">
@@ -23,13 +23,13 @@ require_once(VIEWS_PATH . 'nav.php');
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label for="">Name <strong class="text-danger">*</strong></label>
+                            <label for="">Nombre <strong class="text-danger">*</strong></label>
                             <input type="text" name="name" value="<?= $keeper->getName() ?>" class="form-control" required>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label for="">Lastname <strong class="text-danger">*</strong></label>
+                            <label for="">Apellido <strong class="text-danger">*</strong></label>
                             <input type="text" name="lastname" value="<?= $keeper->getLastname() ?>" class="form-control" required>
                         </div>
                     </div>
@@ -38,13 +38,13 @@ require_once(VIEWS_PATH . 'nav.php');
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="form-group">
-                            <label for="">Address <strong class="text-danger">*</strong></label>
+                            <label for="">Dirección <strong class="text-danger">*</strong></label>
                             <input type="text" name="address" value="<?= $keeper->getAddress() ?>" class="form-control" required>
                         </div>
                     </div>
                 </div>
 
-                <div class="row">
+                <!--<div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label for="">Start Date <strong class="text-danger">*</strong></label>
@@ -77,51 +77,51 @@ require_once(VIEWS_PATH . 'nav.php');
                             <input type="text" name="days" value="<?= $keeper->getDays() ?>" class="form-control">
                         </div>
                     </div>
-                </div>
+                </div>-->
 
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label for="">Price <strong class="text-danger">*</strong></label>
+                            <label for="">Precio por dia <strong class="text-danger">*</strong></label>
                             <input type="number" name="price" step="0.01" min="0" value="<?= $keeper->getPrice() ?>" class="form-control" required>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label for="">Size pet</label><br>
+                            <label for="">Tamaño de mascota</label><br>
                             <div class="form-control">
                                 <?php
-                                if ($keeper->checkSizePet('Small')) {
+                                if ($keeper->checkSizePet('small')) {
                                 ?>
-                                    <input class="ml-2" type="checkbox" name="small" value="Small" checked> Small
+                                    <input class="ml-2" type="checkbox" name="small" value="small" checked> Pequeña
                                 <?php
                                 } else {
                                 ?>
-                                    <input class="ml-2" type="checkbox" name="small" value="Small"> Small
+                                    <input class="ml-2" type="checkbox" name="small" value="small"> Pequeña
                                 <?php
                                 }
                                 ?>
 
                                 <?php
-                                if ($keeper->checkSizePet('Medium')) {
+                                if ($keeper->checkSizePet('medium')) {
                                 ?>
-                                    <input class="ml-2" type="checkbox" name="medium" checked> Medium
+                                    <input class="ml-2" type="checkbox" name="medium" checked> Media
                                 <?php
                                 } else {
                                 ?>
-                                    <input class="ml-2" type="checkbox" name="medium"> Medium
+                                    <input class="ml-2" type="checkbox" name="medium"> Media
                                 <?php
                                 }
                                 ?>
 
                                 <?php
-                                if ($keeper->checkSizePet('Big')) {
+                                if ($keeper->checkSizePet('big')) {
                                 ?>
-                                    <input class="ml-2" type="checkbox" name="big" checked> Big
+                                    <input class="ml-2" type="checkbox" name="big" checked> Grande
                                 <?php
                                 } else {
                                 ?>
-                                    <input class="ml-2" type="checkbox" name="big"> Big
+                                    <input class="ml-2" type="checkbox" name="big"> Grande
                                 <?php
                                 }
                                 ?>
@@ -139,10 +139,10 @@ require_once(VIEWS_PATH . 'nav.php');
                                 }
                                 */
                                 ?>
-                <button type="submit" class="btn btn-dark ml-auto d-block">Update</button>
+                <button type="submit" class="btn btn-dark ml-auto d-block">Actualizar</button>
 
             </form>
-
+                              
             
         </div>
     </section>

@@ -221,16 +221,16 @@ class Keeper
 
     public function descriptionSizePet(){
         $description = '';
-        if($this->checkSizePet('Small')){
-            $description = $description . '[ Small ] '; 
+        if($this->checkSizePet('small')){
+            $description = $description . '[ small ] '; 
         }
 
-        if($this->checkSizePet('Medium')){
-            $description = $description . '[ Medium ] '; 
+        if($this->checkSizePet('medium')){
+            $description = $description . '[ medium ] '; 
         }
 
-        if($this->checkSizePet('Big')){
-            $description = $description . '[ Big ] '; 
+        if($this->checkSizePet('big')){
+            $description = $description . '[ big ] '; 
         }
         return $description;
     }

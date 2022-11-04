@@ -21,32 +21,30 @@ class KeeperController
     public function ShowPerfil()
     {
         $keeper = $this->keeperDAO->SearchByUserId($this->userLogged->getId());
-        require_once(VIEWS_PATH . "keeper/perfil.php");
+        require_once(VIEWS_PATH . "keeper/mainKeeper.php");
     }
 
-    public function Update($name, $lastName, $address, $startDate, $endDate, $days, $price)
+    public function Update($name, $lastname, $address, $price)
     {
         try {
 
             $sizePet = array();
             if(isset($_POST['small'])){
-                array_push($sizePet, 'Small');
+                array_push($sizePet, 'small');
             }
             if(isset($_POST['medium'])){
-                array_push($sizePet, 'Medium');
+                array_push($sizePet, 'medium');
             }
             if(isset($_POST['big'])){
-                array_push($sizePet, 'Big');
+                array_push($sizePet, 'big');
             }
 
             $keeper = $this->keeperDAO->SearchByUserId($this->userLogged->getId());
             $keeper->setName($name);
-            $keeper->setLastname($lastName);
+            $keeper->setLastname($lastname);
             $keeper->setAddress($address);
             $keeper->setPrice($price);
-            $keeper->setStartdate($startDate);
-            $keeper->setEnddate($endDate);
-            $keeper->setDays($days);
+           
             $keeper->setSizePet($sizePet);
 
             if ($this->keeperDAO->Update($keeper)) {

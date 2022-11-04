@@ -8,7 +8,7 @@
 
     class KeeperDAO implements IKeeperDAO
     {
-        private $keeperList = array();
+        public  $keeperList = array();
         private $userDAO;
 
         public function __construct(){
