@@ -21,13 +21,18 @@ class ReserveController
     public function ShowReserve()
     {
         $reserve = $this->reserveDAO->SearchByUserId($this->userLogged->getId());
-        require_once(VIEWS_PATH . "reserve/list-reserve.php");
+        require_once(VIEWS_PATH . "reserves/list-reserve.php");
     }
 
     public function ShowModifyReserve()
     {
         $reserve = $this->reserveDAO->SearchByUserId($this->userLogged->getId());
-        require_once(VIEWS_PATH . "reserve/add-reserve.php");
+        require_once(VIEWS_PATH . "reserves/add-reserve.php");
+    }
+
+    public function ShowNewReserve()
+    {
+        require_once(VIEWS_PATH . "reserves/add-reserve.php");
     }
 
     public function Update($keeper, $pet, $startDate, $endDate)

@@ -28,5 +28,15 @@
         "vaccinationPlan": "20221104075132000000calendario-vacunacion-gatos-web.jpg",
         "video": null,
         "ownerId": 4
+    },
+    {
+        "id": 4,
+        "race": "Terbal",
+        "size": "Small",
+        "observations": "come mucho",
+        "image": "2022110409294600000020181129_120744.jpg",
+        "vaccinationPlan": "20221104092946000000calendario-vacunacion-gatos-web.jpg",
+        "video": null,
+        "ownerId": 4
     }
 ]

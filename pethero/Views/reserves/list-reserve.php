@@ -54,7 +54,7 @@ require_once(VIEWS_PATH . 'nav.php');
                 </table>
                 <br>
                 <li class="nav-item">
-                         <a class="btn btn-dark ml-auto d-block" href="<?= FRONT_ROOT ?>keeper/ShowModifyReserve">Modificar reserva</a>
+                         <a class="btn btn-dark ml-auto d-block" href="<?= FRONT_ROOT ?>reserves/ShowModifyReserve">Modificar reserva</a>
                 </li>  
             
         </div>

@@ -21,6 +21,7 @@ class KeeperController
     public function ShowPerfil()
     {
         $keeper = $this->keeperDAO->SearchByUserId($this->userLogged->getId());
+        $keeperList = $this->keeperDAO->GetAll();
         require_once(VIEWS_PATH . "keeper/mainKeeper.php");
     }
 
@@ -54,9 +55,9 @@ class KeeperController
             $keeper->setSizePet($sizePet);
 
             if ($this->keeperDAO->Update($keeper)) {
-                $_SESSION['success'] = 'Keeper updated';
+                $_SESSION['success'] = 'Guardian actualizado';
             } else {
-                $_SESSION['error'] = 'Keeper could not be updated';
+                $_SESSION['error'] = 'No se pudo actualizar el guardian';
             }
             
         } catch (\Throwable $th) {
