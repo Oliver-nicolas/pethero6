@@ -4,19 +4,16 @@ require_once(VIEWS_PATH . 'nav.php');
 <main class="py-5">
     <section id="listado" class="mb-5">
         <div class="container-fluid">
-            <h2 class="mb-4">Keepers</h2>
+            <h2 class="mb-4">Listo de Guardianes</h2>
 
             <div class="bg-light-alpha p-5">
                 <table class="table">
                     <thead>
-                        <th>Name</th>
-                        <th>Lastname</th>
-                        <th>Address</th>
-                        <th>Size Pet</th>
-                        <th>Price</th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
-                        <th>Days</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Direccion</th>
+                        <th>Tamaño de mascota</th>
+                        <th>Precio por dia</th>
                     </thead>
                     <tbody>
                         <?php
@@ -28,9 +25,6 @@ require_once(VIEWS_PATH . 'nav.php');
                                 <td><?= $item->getAddress() ?></td>
                                 <td><?= $item->descriptionSizePet() ?></td>
                                 <td><?= $item->getPrice() ?></td>
-                                <td><?= $item->getStartDate() ?></td>
-                                <td><?= $item->getEndDate() ?></td>
-                                <td><?= empty($item->getDays()) ? '-' : $item->getDays() ?></td>
                             </tr>
                         <?php
                         }

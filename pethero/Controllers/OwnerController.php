@@ -115,7 +115,7 @@ class OwnerController
         } catch (\Throwable $th) {
             $_SESSION['error'] = 'Exception. ' . $th->getMessage();
         }
-        $this->ShowNewPet();
+        $this->ShowMyPets();
     }
 
     public function ShowListKeepers()

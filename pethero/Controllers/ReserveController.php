@@ -12,7 +12,7 @@ class ReserveController
     public function __construct()
     {
         AuthController::validateLogged();
-        AuthController::validateRole('reserve');
+        AuthController::validateRole('Owner');
 
         $this->reserveDAO = new ReserveDAO();
         $this->userLogged = $_SESSION['user'];
@@ -39,25 +39,17 @@ class ReserveController
             $reserve->setPet($pet);
             $reserve->setStartDate($startDate);
             $reserve->setEndDate($endDate);
+           
+            if($keeper->getSizePet()== $pet->getSize()){
+                if ($this->reserveDAO->Update($reserve)) {
+                    $_SESSION['success'] = 'Reserva realizada';
+                } else {
+                    $_SESSION['error'] = 'No se puedo realizar la reserva';
+                }
+            }else {
+                $_SESSION['error'] = 'No se puedo realizar la reserva';
+            }
 
-            $sizePet = array();
-            if(isset($_POST['small'])){
-                array_push($sizePet, 'small');
-            }
-            if(isset($_POST['medium'])){
-                array_push($sizePet, 'medium');
-            }
-            if(isset($_POST['big'])){
-                array_push($sizePet, 'big');
-            }
-            $reserve->setSizePet($sizePet);
-
-            if ($this->reserveDAO->Update($reserve)) {
-                $_SESSION['success'] = 'reserve updated';
-            } else {
-                $_SESSION['error'] = 'reserve could not be updated';
-            }
-            
         } catch (\Throwable $th) {
             $_SESSION['error'] = 'Exception. ' . $th->getMessage();
         }

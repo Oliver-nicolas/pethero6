@@ -5,6 +5,7 @@ require_once(VIEWS_PATH . 'nav.php');
     <section id="listado" class="mb-5">
         <div class="container">
             <h2 class="mb-4">PERFIL DE GUARDIAN</h2>
+            <form action="<?php echo FRONT_ROOT . "Keeper/Update" ?>" method="post">
 
             <table class="table">
 
@@ -46,7 +47,7 @@ require_once(VIEWS_PATH . 'nav.php');
                         ?>
                         
                     </tbody>
-                </table>
+                
                 <br>
                 <li class="nav-item">
                          <a class="btn btn-dark ml-auto d-block" href="<?= FRONT_ROOT ?>keeper/ShowModifyPerfil">Modificar perfil</a>
@@ -54,8 +55,9 @@ require_once(VIEWS_PATH . 'nav.php');
                         <br>
                 <li class="nav-item">
                          <a class="btn btn-dark ml-auto d-block" href="<?= FRONT_ROOT ?>reserve/ShowReserves">Consultar reservas</a>
-                </li>  
-            
+                </li>
+            </table>  
+            </form>
         </div>
     </section>
 </main>
