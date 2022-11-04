@@ -27,8 +27,14 @@ class OwnerController
 
     public function ShowPerfil()
     {
-        $keeper = $this->keeperDAO->SearchByUserId($this->userLogged->getId());
+        $owner = $this->ownerDAO->SearchByUserId($this->userLogged->getId());
         require_once(VIEWS_PATH . "owner/mainOwner.php");
+    }
+
+    public function ShowModifyPerfil()
+    {
+        $owner = $this->ownerDAO->SearchByUserId($this->userLogged->getId());
+        require_once(VIEWS_PATH . "auth/register.php");
     }
 
     public function ShowMyPets()

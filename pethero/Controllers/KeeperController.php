@@ -24,6 +24,12 @@ class KeeperController
         require_once(VIEWS_PATH . "keeper/mainKeeper.php");
     }
 
+    public function ShowModifyPerfil()
+    {
+        $keeper = $this->keeperDAO->SearchByUserId($this->userLogged->getId());
+        require_once(VIEWS_PATH . "keeper/perfil.php");
+    }
+
     public function Update($name, $lastname, $address, $price)
     {
         try {

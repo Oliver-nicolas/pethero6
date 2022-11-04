@@ -23,9 +23,11 @@ require_once(VIEWS_PATH . 'nav.php');
                 <?php } ?>
                 
                     <thead>
-                        <th>Nombre:</th>
-                        <th>Apellido:</th>
-                        <th>Dirección:</th>
+                        <tr>
+                            <th>Nombre:</th>
+                            <th>Apellido:</th>
+                            <th>Dirección:</th>
+                        </tr>
                     </thead>
                     <tbody>
                         <?php
@@ -45,12 +47,13 @@ require_once(VIEWS_PATH . 'nav.php');
                         
                     </tbody>
                 </table>
+                <br>
                 <li class="nav-item">
-                         <a class="btn btn-dark ml-auto d-block" href="<?= FRONT_ROOT ?>Owner/ShowNewPet">Modificar perfil</a>
+                         <a class="btn btn-dark ml-auto d-block" href="<?= FRONT_ROOT ?>keeper/ShowModifyPerfil">Modificar perfil</a>
                 </li>  
-            
+                        <br>
                 <li class="nav-item">
-                         <a class="btn btn-dark ml-auto d-block" href="<?= FRONT_ROOT ?>Owner/ShowNewPet">Consultar reservas</a>
+                         <a class="btn btn-dark ml-auto d-block" href="<?= FRONT_ROOT ?>reserve/ShowReserves">Consultar reservas</a>
                 </li>  
             
         </div>

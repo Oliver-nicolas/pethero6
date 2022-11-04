@@ -4,7 +4,7 @@ require_once(VIEWS_PATH . 'nav.php');
 <main class="py-5">
     <section id="listado" class="mb-5">
         <div class="container">
-            <h2 class="mb-4">PERFIL DE DUEÑO</h2>
+            <h2 class="mb-4">RESERVAS</h2>
 
             <table class="table">
 
@@ -23,21 +23,28 @@ require_once(VIEWS_PATH . 'nav.php');
                 <?php } ?>
                 
                     <thead>
-                        <th>Nombre:</th>
-                        <th>Apellido:</th>
-                        <th>Dirección:</th>
+                        <tr>
+                            <th>Guardian:</th>
+                            <th>Mascota:</th>
+                            <th>Fecha de inicio:</th>
+                            <th>Fecha final:</th>
+                            <th>Estado de operacion:</th>
+                            <th>Cupon:</th>
+                        </tr>
                     </thead>
                     <tbody>
                         <?php
-                        foreach ($ownerList as $item) {
+                        foreach ($reserveList as $item) {
                         ?>
                             <tr>
                                 
-                                <td><?= $item->getName() ?></td>
-                                <td><?= $item->getLastname() ?></td>
-                                <td><?= $item->getAddress() ?></td>
-                               
-                                
+                                <td><?= $item->getKeeper() ?></td>
+                                <td><?= $item->getPet() ?></td>
+                                <td><?= $item->getStartDate() ?></td>
+                                <td><?= $item->getEndDate() ?></td>
+                                <td><?= $item->getAccepted() ?></td>
+                                <td><?= $item->getCupon_generated() ?></td>
+        
                             </tr>
                         <?php
                         }
@@ -45,18 +52,10 @@ require_once(VIEWS_PATH . 'nav.php');
                         
                     </tbody>
                 </table>
-            
-                    <li class="nav-item">
-                         <a class="btn btn-dark ml-auto d-block" href="<?= FRONT_ROOT ?>owner/ShowModifyPerfil">Modificar perfil</a>
-                    </li>
-                    <br>
-                    <li class="nav-item">
-                         <a class="btn btn-dark ml-auto d-block" href="<?= FRONT_ROOT ?>owner/ShowNewPet">Nueva mascota</a>
-                    </li>
-                    <br>
-                    <li class="nav-item">
-                         <a class="btn btn-dark ml-auto d-block" href="<?= FRONT_ROOT ?>reserve/ShowNewReserve">Crear reserva</a>
-                    </li>
+                <br>
+                <li class="nav-item">
+                         <a class="btn btn-dark ml-auto d-block" href="<?= FRONT_ROOT ?>keeper/ShowModifyReserve">Modificar reserva</a>
+                </li>  
             
         </div>
     </section>
