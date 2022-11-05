@@ -5,7 +5,7 @@ require_once(VIEWS_PATH . 'nav.php');
     <section id="listado" class="mb-5">
         <div class="container">
             <h2 class="mb-4">Nueva mascota</h2>
-            <form action="<?php echo FRONT_ROOT ?>Owner/AddPet" method="post" class="bg-light-alpha p-5" enctype="multipart/form-data">
+            <form action="<?php echo FRONT_ROOT ?>owner/AddPet" method="post" class="bg-light-alpha p-5" enctype="multipart/form-data">
                 <?php if (isset($_SESSION['error'])) { ?>
                     <div class="alert alert-danger alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert">&times;</button>

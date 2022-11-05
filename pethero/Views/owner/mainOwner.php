@@ -46,23 +46,14 @@ require_once(VIEWS_PATH . 'nav.php');
                         ?>
                     </tbody>
                 </table>
-                    <br>
-                    <li class="nav-item">
-                         <a class="btn btn-dark ml-auto d-block" href="<?= FRONT_ROOT ?>owner/ShowModifyPerfil">Modificar perfil</a>
-                    </li>
-                    <br>
-                    <li class="nav-item">
-                         <a class="btn btn-dark ml-auto d-block" href="<?= FRONT_ROOT ?>owner/ShowNewPet">Nueva mascota</a>
-                    </li>
-                    <br>
-                    <li class="nav-item">
-                         <a class="btn btn-dark ml-auto d-block" href="<?= FRONT_ROOT ?>owner/ShowMyPets">Ver mascota</a>
-                    </li>
-                    <br>
-                    <li class="nav-item">
+                    <br>      
+                         <a class="btn btn-dark ml-auto d-block" href="<?= FRONT_ROOT ?>owner/ShowModifyPerfil">Modificar perfil</a>                  
+                    <br>                
+                         <a class="btn btn-dark ml-auto d-block" href="<?= FRONT_ROOT ?>owner/ShowNewPet">Nueva mascota</a>                   
+                    <br>                 
+                         <a class="btn btn-dark ml-auto d-block" href="<?= FRONT_ROOT ?>owner/ShowMyPets">Ver mascota</a>                
+                    <br>        
                          <a class="btn btn-dark ml-auto d-block" href="<?= FRONT_ROOT ?>reserve/ShowNewReserve">Crear reserva</a>
-                    </li>
-            
         </div>
     </section>
 </main>

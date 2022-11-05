@@ -5,10 +5,10 @@
     },
     {
         "id": 2,
-        "type": "Owner"
+        "type": "Dueño"
     },
     {
         "id": 3,
-        "type": "Keeper"
+        "type": "Guardian"
     }
 ]

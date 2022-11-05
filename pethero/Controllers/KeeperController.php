@@ -12,7 +12,7 @@ class KeeperController
     public function __construct()
     {
         AuthController::validateLogged();
-        AuthController::validateRole('Keeper');
+        AuthController::validateRole('Guardian');
 
         $this->keeperDAO = new KeeperDAO();
         $this->userLogged = $_SESSION['user'];
