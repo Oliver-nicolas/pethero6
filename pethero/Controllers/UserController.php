@@ -72,7 +72,7 @@ class UserController
 
             if ($this->userDAO->Add($user)) {
 
-                if ($user->getUsertype()->getType() == 'Owner') {
+                if ($user->getUsertype()->getType() == 'Dueño') {
                     $owner = new Owner();
                     $owner->setName($name);
                     $owner->setLastname($lastname);
@@ -80,7 +80,7 @@ class UserController
                     $owner->setUser($user);
 
                     $this->ownerDAO->Add($owner);
-                } elseif ($user->getUsertype()->getType() == 'Keeper') {
+                } elseif ($user->getUsertype()->getType() == 'Guardian') {
                     $keeper = new Keeper();
                     $keeper->setName($name);
                     $keeper->setLastname($lastname);

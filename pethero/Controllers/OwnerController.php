@@ -17,7 +17,7 @@ class OwnerController
     public function __construct()
     {
         AuthController::validateLogged();
-        AuthController::validateRole('Owner');
+        AuthController::validateRole('Dueño');
 
         $this->ownerDAO = new OwnerDAO();
         $this->petDAO = new PetDAO();

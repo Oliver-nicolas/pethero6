@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
-     <span class="navbar-text">
-          <strong>Framework</strong>
+     <span class="navbar-item">
+     <a class="nav-link" href="<?= FRONT_ROOT ?>index">Guarderia Animal Pet Hero</a>
      </span>
      <ul class="navbar-nav ml-auto">
           <?php
@@ -14,13 +14,13 @@
                } elseif ($user->isKeeper()) {
                ?>
                     <li class="nav-item">
-                         <a class="nav-link" href="<?= FRONT_ROOT ?>Keeper/ShowPerfil">@<?= $user->getUsername() ?></a>
+                         <a class="nav-link" href="<?= FRONT_ROOT ?>keeper/ShowPerfil">@<?= $user->getUsername() ?></a>
                     </li>
                <?php
                } elseif ($user->isOwner()) {
                ?>
                     <li class="nav-item">
-                         <a class="nav-link" href="<?= FRONT_ROOT ?>Owner/ShowPerfil">@<?= $user->getUsername() ?></a>
+                         <a class="nav-link" href="<?= FRONT_ROOT ?>owner/ShowPerfil">@<?= $user->getUsername() ?></a>
                     </li>
                     <!--<li class="nav-item">
                          <a class="nav-link" href="<?= FRONT_ROOT ?>Owner/ShowMyPets">Mis mascotas</a>
@@ -35,16 +35,16 @@
                }
                ?>
                <li class="nav-item">
-                    <a class="nav-link" href="<?= FRONT_ROOT ?>User/Logout">Cerrar Sesión</a>
+                    <a class="nav-link" href="<?= FRONT_ROOT ?>user/Logout">Cerrar Sesión</a>
                </li>
           <?php
           } else {
           ?>
                <li class="nav-item">
-                    <a class="nav-link" href="<?php echo FRONT_ROOT . "User/ShowLogin"?>">Login</a>
+                    <a class="nav-link" href="<?php echo FRONT_ROOT . "User/ShowLogin"?>">Ingreso</a>
                </li>
                <li class="nav-item">
-                    <a class="nav-link" href="<?php echo FRONT_ROOT . "User/ShowRegister"?>">Register</a>
+                    <a class="nav-link" href="<?php echo FRONT_ROOT . "User/ShowRegister"?>">Registro</a>
                </li>
 
           <?php } ?>

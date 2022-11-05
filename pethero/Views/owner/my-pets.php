@@ -4,7 +4,7 @@ require_once(VIEWS_PATH . 'nav.php');
 <main class="py-5">
     <section id="listado" class="mb-5">
         <div class="container-fluid">
-            <h2 class="mb-4">Mi mascota</h2>
+            <h2 class="mb-4"><strong>Mi mascota</strong></h2>
 
             <div class="bg-light-alpha p-5">
                 <table class="table">
@@ -46,14 +46,10 @@ require_once(VIEWS_PATH . 'nav.php');
                         
                     </tbody>
                 </table>
-                    <br>
-                    <li class="nav-item">
-                         <a class="btn btn-dark ml-auto d-block" href="<?= FRONT_ROOT ?>owner/ShowNewPet">Nueva mascota</a>
-                    </li>
-                    <br>
-                    <li class="nav-item">
+                    <br>              
+                         <a class="btn btn-dark ml-auto d-block" href="<?= FRONT_ROOT ?>owner/ShowNewPet">Nueva mascota</a>                
+                    <br>        
                          <a class="btn btn-dark ml-auto d-block" href="<?= FRONT_ROOT ?>owner/ShowPerfil">Volver a perfil</a>
-                    </li>
             </div>
         </div>
     </section>

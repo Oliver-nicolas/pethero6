@@ -91,12 +91,12 @@ class User
 
         public function isOwner()
         {
-                return $this->usertype->getType() == 'Owner';
+                return $this->usertype->getType() == 'Dueño';
         }
 
         public function isKeeper()
         {
-                return $this->usertype->getType() == 'Keeper';
+                return $this->usertype->getType() == 'Guardian';
         }
 
         public function isAdmin()

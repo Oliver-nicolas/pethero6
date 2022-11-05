@@ -47,18 +47,13 @@ require_once(VIEWS_PATH . 'nav.php');
                         <?php
                         }
                         ?>   
-                    </tbody>
-                   
+                    </tbody>     
                 </table>  
             </form> 
                     <br>
-                    <li class="nav-item">
-                            <a class="btn btn-dark ml-auto d-block" href="<?= FRONT_ROOT ?>keeper/ShowModifyPerfil">Modificar perfil</a>
-                    </li>  
-                    <br>
-                    <li class="nav-item">
-                            <a class="btn btn-dark ml-auto d-block" href="<?= FRONT_ROOT ?>reserve/ShowReserves">Consultar reservas</a>
-                    </li>
+                            <a class="btn btn-dark ml-auto d-block" href="<?= FRONT_ROOT ?>keeper/ShowModifyPerfil">Modificar perfil</a>            
+                    <br> 
+                            <a class="btn btn-dark ml-auto d-block" href="<?= FRONT_ROOT ?>reserve/ShowReserves">Consultar reservas</a>             
         </div>
     </section>
 </main>
