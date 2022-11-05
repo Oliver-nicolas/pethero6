@@ -51,6 +51,9 @@ require_once(VIEWS_PATH . 'nav.php');
                          <a class="btn btn-dark ml-auto d-block" href="<?= FRONT_ROOT ?>owner/ShowNewPet">Nueva mascota</a>
                     </li>
                     <br>
+                    <li class="nav-item">
+                         <a class="btn btn-dark ml-auto d-block" href="<?= FRONT_ROOT ?>owner/ShowPerfil">Volver a perfil</a>
+                    </li>
             </div>
         </div>
     </section>

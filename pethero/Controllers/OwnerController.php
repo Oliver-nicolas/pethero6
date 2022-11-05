@@ -28,6 +28,7 @@ class OwnerController
     public function ShowPerfil()
     {
         $owner = $this->ownerDAO->SearchByUserId($this->userLogged->getId());
+        $ownerList = $this->ownerDAO->GetAll();
         require_once(VIEWS_PATH . "owner/mainOwner.php");
     }
 
@@ -93,7 +94,7 @@ class OwnerController
                     return;
                 }
             } else {
-                $_SESSION['error'] = "El archivo Vaccination plan no corresponde a una imágen";
+                $_SESSION['error'] = "El plan vacunatorio no corresponde a una imágen";
             }
 
             $imageName = date('Ymdhisu') . $video["name"];
@@ -108,9 +109,9 @@ class OwnerController
             }
 
             if ($this->petDAO->Add($pet)) {
-                $_SESSION['success'] = 'Pet registered';
+                $_SESSION['success'] = 'Mascota registrada';
             } else {
-                $_SESSION['error'] = 'Pet could not be updated';
+                $_SESSION['error'] = 'La mascota no se puedo registrar';
             }
         } catch (\Throwable $th) {
             $_SESSION['error'] = 'Exception. ' . $th->getMessage();

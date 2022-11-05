@@ -39,11 +39,11 @@ class UserController
             $_SESSION['user'] = $user;
 
             if ($user->isOwner()) {
-                header('Location: ../Owner/ShowPerfil');
+                header('Location: ../owner/ShowPerfil');
             } elseif ($user->isKeeper()) {
-                header('Location: ../Keeper/ShowPerfil');
+                header('Location: ../keeper/ShowPerfil');
             } elseif ($user->isAdmin()) {
-                header('Location: ../Admin/');
+                header('Location: ../admin/');
             }
 
             return;
@@ -93,7 +93,7 @@ class UserController
                 $this->ShowLogin();
                 return;
             } else {
-                $_SESSION['error'] = 'The username exists';
+                $_SESSION['error'] = 'El nombre de usuario ya existe';
             }
         } catch (\Throwable $th) {
             $_SESSION['error'] = 'Exception. ' . $th->getMessage();

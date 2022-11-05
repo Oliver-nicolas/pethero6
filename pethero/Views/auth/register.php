@@ -56,7 +56,7 @@ require_once(VIEWS_PATH . 'nav.php');
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label for="">User type <strong class="text-danger">*</strong></label>
+                            <label for="">Tipo de usuario <strong class="text-danger">*</strong></label>
                             <select name="usertype" class="form-control" required>
                                 <?php
                                 foreach ($usertypes as $item) {
