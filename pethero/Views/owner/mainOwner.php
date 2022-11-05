@@ -28,30 +28,35 @@ require_once(VIEWS_PATH . 'nav.php');
                         <th>Dirección:</th>
                     </thead>
                     <tbody>
-                        <?php
-                        foreach ($ownerList as $item) {
+                        <?php     
+                        
+                         if (isset($_SESSION['user'])) {
+                              $user = $_SESSION['user'];
+                              
+                              foreach ($ownerList as $item) 
+                                    if($item->getUser()==$user)
                         ?>
-                            <tr>
-                                
+                            <tr>        
                                 <td><?= $item->getName() ?></td>
                                 <td><?= $item->getLastname() ?></td>
-                                <td><?= $item->getAddress() ?></td>
-                               
-                                
+                                <td><?= $item->getAddress() ?></td> 
                             </tr>
                         <?php
-                        }
+                            }
                         ?>
-                        
                     </tbody>
                 </table>
-            
+                    <br>
                     <li class="nav-item">
                          <a class="btn btn-dark ml-auto d-block" href="<?= FRONT_ROOT ?>owner/ShowModifyPerfil">Modificar perfil</a>
                     </li>
                     <br>
                     <li class="nav-item">
                          <a class="btn btn-dark ml-auto d-block" href="<?= FRONT_ROOT ?>owner/ShowNewPet">Nueva mascota</a>
+                    </li>
+                    <br>
+                    <li class="nav-item">
+                         <a class="btn btn-dark ml-auto d-block" href="<?= FRONT_ROOT ?>owner/ShowMyPets">Ver mascota</a>
                     </li>
                     <br>
                     <li class="nav-item">

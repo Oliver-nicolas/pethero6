@@ -4,7 +4,7 @@ require_once(VIEWS_PATH . 'nav.php');
 <main class="py-5">
     <section id="listado" class="mb-5">
         <div class="container-fluid">
-            <h2 class="mb-4">Listo de Guardianes</h2>
+            <h2 class="mb-4">Lista de Guardianes</h2>
 
             <div class="bg-light-alpha p-5">
                 <table class="table">
