@@ -29,7 +29,7 @@ require_once(VIEWS_PATH . 'nav.php');
                     <button type="submit" class="btn btn-dark ml-auto d-block">Ingreso</button>
                     <br>
             </form>
-                    <button class="btn btn-warning  d-block" href="<?= FRONT_ROOT ?>User/ShowRegister">Nuevo registro</button>
+                    <a class="btn btn-warning "  href="<?= FRONT_ROOT ?>User/ShowRegister">Nuevo registro</a>
 
         </div>
     </section>

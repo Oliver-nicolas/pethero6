@@ -46,10 +46,12 @@ require_once(VIEWS_PATH . 'nav.php');
                         
                     </tbody>
                 </table>
-                    <br>              
-                         <a class="btn btn-dark ml-auto d-block" href="<?= FRONT_ROOT ?>owner/ShowNewPet">Nueva mascota</a>                
-                    <br>        
-                         <a class="btn btn-dark ml-auto d-block" href="<?= FRONT_ROOT ?>owner/ShowPerfil">Volver a perfil</a>
+                    <br>  
+                    <div class="container" align="center">             
+                         <a class="btn btn-dark " href="<?= FRONT_ROOT ?>owner/ShowNewPet">Nueva mascota</a>                
+                           
+                         <a class="btn btn-dark " href="<?= FRONT_ROOT ?>owner/ShowPerfil">Volver a perfil</a>
+                    </div>
             </div>
         </div>
     </section>

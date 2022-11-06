@@ -31,9 +31,9 @@ require_once(VIEWS_PATH . 'nav.php');
                         <div class="form-group">
                             <label for="">Tamaño <strong class="text-danger">*</strong></label>
                             <select name="size" class="form-control">
-                                <option value="Small">Pequeño</option>
-                                <option value="Medium">Mediano</option>
-                                <option value="Big">Grande</option>
+                                <option value="Pequeña">Pequeña</option>
+                                <option value="Media">Media</option>
+                                <option value="Grande">Grande</option>
                             </select>
                         </div>
                     </div>
@@ -74,12 +74,8 @@ require_once(VIEWS_PATH . 'nav.php');
                         </div>
                     </div>
                 </div>
-
                 <button type="submit" class="btn btn-dark ml-auto d-block">Ingresar Mascota</button>
-
             </form>
-
-
         </div>
     </section>
 </main>

@@ -53,9 +53,9 @@ require_once(VIEWS_PATH . 'nav.php');
                     </tbody>
                 </table>
                 <br>
-                <li class="nav-item">
+               
                          <a class="btn btn-dark ml-auto d-block" href="<?= FRONT_ROOT ?>reserves/ShowModifyReserve">Modificar reserva</a>
-                </li>  
+                 
             
         </div>
     </section>

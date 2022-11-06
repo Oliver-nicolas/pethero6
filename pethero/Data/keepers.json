@@ -5,8 +5,8 @@
         "lastname": "Gutierrez",
         "address": "Av 123",
         "sizePet": [
-            "Small",
-            "Medium"
+
+            "Media"
         ],
         "price": "100",
         "startDate": "2022-10-21",
@@ -20,8 +20,7 @@
         "lastname": "keep",
         "address": "keep",
         "sizePet": [
-            "Small",
-            "Medium"
+            "Pequeña"
         ],
         "price": "200",
         "startDate": "2022-10-22",
