@@ -48,6 +48,26 @@
             return $data;
         }
         
+        function GetAllByPet($petId){
+            $this->RetrieveData();
+
+            $data = array();
+
+            foreach($this->petList as $pet){
+                if($pet->getOwner()->getId() == $petId){
+                    array_push($data, $pet);
+                }
+            }
+            return $data;
+        }
+
+        public function GetAll()
+        {
+            $this->RetrieveData();
+
+            return $this->petList;
+        }
+
         private function SaveData()
         {
             $arrayToEncode = array();
@@ -55,6 +75,7 @@
             foreach($this->petList as $pet)
             {
                 $valuesArray["id"] = $pet->getId();
+                $valuesArray["animal"] = $pet->getAnimal();
                 $valuesArray["race"] = $pet->getRace();
                 $valuesArray["size"] = $pet->getSize();
                 $valuesArray["observations"] = $pet->getObservations();
@@ -85,6 +106,7 @@
                 {
                     $pet = new Pet();
                     $pet->setId($valuesArray["id"]);
+                    $pet->setAnimal($valuesArray["animal"]);
                     $pet->setRace($valuesArray["race"]);
                     $pet->setSize($valuesArray["size"]);
                     $pet->setObservations($valuesArray["observations"]);

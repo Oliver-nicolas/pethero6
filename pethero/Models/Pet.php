@@ -5,6 +5,7 @@ namespace Models;
 class Pet
 {
     private $id;
+    private $animal = array();
     private $image;
     private $race;
     private $size;
@@ -177,5 +178,41 @@ class Pet
     public function __toString()
     {
         return $this->id . ' - ' . $this->race;
+    }
+
+    /**
+     * Get the value of animal
+     */ 
+    public function getAnimal()
+    {
+        return $this->animal;
+    }
+
+    /**
+     * Set the value of animal
+     *
+     * @return  self
+     */ 
+    public function setAnimal($animal)
+    {
+        $this->animal = $animal;
+
+        return $this;
+    }
+
+    public function checkAnimal($animalOwner){
+        return in_array($animalOwner, $this->animal);
+    }
+
+    public function descriptionAnimal(){
+        $description = '';
+        if($this->checkAnimal('Perro')){
+            $description = $description . '[Perro]'; 
+        }
+
+        if($this->checkAnimal('Gato')){
+            $description = $description . '[Gato]'; 
+        }
+        return $description;
     }
 }

@@ -20,14 +20,49 @@ require_once(VIEWS_PATH . 'nav.php');
                     </div>
                 <?php } ?>
 
-                <div class="row">
-                    <div class="col-lg-6">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label for="">Animal <strong class="text-danger"></strong></label>
+                            <!--<select name="animal" class="form-control">
+                                <option value="Perro">Perro</option>
+                                <option value="Gato">Gato</option>
+                            </select>-->
+                     <div class="form-control">
+                                <?php
+                                if ($pet->checkAnimal('Perro')) {
+                                ?>
+                                    <input class="ml-2" type="checkbox" name="Perro" value="Perro" checked> Perro
+                                <?php
+                                } else {
+                                ?>
+                                    <input class="ml-2" type="checkbox" name="Perro" value="Perro"> Perro
+                                <?php
+                                }
+                                ?>
+
+                                <?php
+                                if ($pet->checkAnimal('Gato')) {
+                                ?>
+                                    <input class="ml-2" type="checkbox" name="Gato" checked> Gato
+                                <?php
+                                } else {
+                                ?>
+                                    <input class="ml-2" type="checkbox" name="Gato"> Gato
+                                <?php
+                                }
+                                ?>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
                         <div class="form-group">
                             <label for="">Raza <strong class="text-danger">*</strong></label>
                             <input type="text" name="race" class="form-control" required>
                         </div>
-                    </div>
-                    <div class="col-lg-6">
+                </div>
+
+                <div class="col-lg-6">
                         <div class="form-group">
                             <label for="">Tamaño <strong class="text-danger">*</strong></label>
                             <select name="size" class="form-control">
@@ -36,8 +71,8 @@ require_once(VIEWS_PATH . 'nav.php');
                                 <option value="Grande">Grande</option>
                             </select>
                         </div>
-                    </div>
                 </div>
+                
 
                 <div class="row">
                     <div class="col-lg-12">

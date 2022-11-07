@@ -41,25 +41,42 @@ class OwnerController
     public function ShowMyPets()
     {
         $owner = $this->ownerDAO->SearchByUserId($this->userLogged->getId());
-        $pets = $this->petDAO->GetAllByOwner($owner->getId());
+        $pet = $this->petDAO->GetAll();
         require_once(VIEWS_PATH . "owner/my-pets.php");
     }
 
     public function ShowNewPet()
     {
+        $owner = $this->ownerDAO->SearchByUserId($this->userLogged->getId());
+        $pet = $this->petDAO->GetAllByOwner($owner->getId());
         require_once(VIEWS_PATH . "owner/new-pet.php");
     }
 
-    public function AddPet($race, $size, $observations, $image, $vaccination_plan, $video)
+    public function AddPet($animal, $race, $size, $observations, $image, $vaccination_plan, $video)
     {
         try {
 
+            $animal = array();
+            if(isset($_POST['Perro'])){
+                array_push($animal, 'Perro');
+            }
+            if(isset($_POST['Gato'])){
+                array_push($animal, 'Gato');
+            }
+           
             $owner = $this->ownerDAO->SearchByUserId($this->userLogged->getId());
             $pet = new Pet();
+            
             $pet->setRace($race);
             $pet->setSize($size);
             $pet->setObservations($observations);
             $pet->setOwner($owner);
+            
+            $pet->setAnimal($animal);
+
+            if($pet->getAnimal()=='Gato'){
+                $pet->setSize('Pequeño');
+            }
 
             $imageName = date('Ymdhisu') . $image["name"];
             $tempImageName = $image["tmp_name"];

@@ -1,6 +1,7 @@
 [
     {
         "id": 1,
+        "animal":"Perro",
         "race": "asd",
         "size": "Small",
         "observations": "asd",
@@ -11,6 +12,7 @@
     },
     {
         "id": 2,
+        "animal":"Gato",
         "race": "Terbal",
         "size": "Small",
         "observations": "come mucho",

@@ -55,7 +55,7 @@ class ReserveController
                     $_SESSION['error'] = 'No se puedo realizar la reserva';
                 }
             }else {
-                $_SESSION['error'] = 'No se puedo realizar la reserva';
+                $_SESSION['error'] = 'No se puedo realizar la reserva. El guardian no es apto para el cuidado de la mascota';
             }
 
         } catch (\Throwable $th) {
