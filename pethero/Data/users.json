@@ -34,5 +34,17 @@
         "username": "keep",
         "password": "keep",
         "userTypeId": 3
+    },
+    {
+        "id": 7,
+        "username": "Marco",
+        "password": "1234",
+        "userTypeId": 3
+    },
+    {
+        "id": 8,
+        "username": "Mia",
+        "password": "0987",
+        "userTypeId": 2
     }
 ]

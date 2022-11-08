@@ -15,7 +15,7 @@
         }
 
         /**
-         * Set the value of id
+         * Set the value of id0
          *
          * @return  self
          */ 
