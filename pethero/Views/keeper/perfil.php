@@ -91,37 +91,37 @@ require_once(VIEWS_PATH . 'nav.php');
                             <label for="">Tamaño de mascota</label><br>
                             <div class="form-control">
                                 <?php
-                                if ($keeper->checkSizePet('small')) {
+                                if ($keeper->checkSizePet('Pequeña')) {
                                 ?>
-                                    <input class="ml-2" type="checkbox" name="small" value="small" checked> Pequeña
+                                    <input class="ml-2" type="checkbox" name="Pequeña" value="Pequeña" checked> Pequeña
                                 <?php
                                 } else {
                                 ?>
-                                    <input class="ml-2" type="checkbox" name="small" value="small"> Pequeña
+                                    <input class="ml-2" type="checkbox" name="Pequeña" value="Pequeña"> Pequeña
                                 <?php
                                 }
                                 ?>
 
                                 <?php
-                                if ($keeper->checkSizePet('medium')) {
+                                if ($keeper->checkSizePet('Media')) {
                                 ?>
-                                    <input class="ml-2" type="checkbox" name="medium" checked> Media
+                                    <input class="ml-2" type="checkbox" name="Media" checked> Media
                                 <?php
                                 } else {
                                 ?>
-                                    <input class="ml-2" type="checkbox" name="medium"> Media
+                                    <input class="ml-2" type="checkbox" name="Media"> Media
                                 <?php
                                 }
                                 ?>
 
                                 <?php
-                                if ($keeper->checkSizePet('big')) {
+                                if ($keeper->checkSizePet('Grande')) {
                                 ?>
-                                    <input class="ml-2" type="checkbox" name="big" checked> Grande
+                                    <input class="ml-2" type="checkbox" name="Grande" checked> Grande
                                 <?php
                                 } else {
                                 ?>
-                                    <input class="ml-2" type="checkbox" name="big"> Grande
+                                    <input class="ml-2" type="checkbox" name="Grande"> Grande
                                 <?php
                                 }
                                 ?>

@@ -5,7 +5,7 @@ require_once(VIEWS_PATH . 'nav.php');
     <section id="listado" class="mb-5">
         <div class="container">
             <h2 class="mb-4">PERFIL DE GUARDIAN</h2>
-            <form action="<?php echo FRONT_ROOT . "Keeper/Update" ?>" method="post">
+            <form action="<?php echo FRONT_ROOT . "keeper/Update" ?>" method="post">
                 <table class="table">
                     <?php if (isset($_SESSION['error'])) { ?>
                         <div class="alert alert-danger alert-dismissable">
@@ -51,9 +51,11 @@ require_once(VIEWS_PATH . 'nav.php');
                 </table>  
             </form> 
                     <br>
-                            <a class="btn btn-dark ml-auto d-block" href="<?= FRONT_ROOT ?>keeper/ShowModifyPerfil">Modificar perfil</a>            
-                    <br> 
-                            <a class="btn btn-dark ml-auto d-block" href="<?= FRONT_ROOT ?>reserve/ShowReserves">Consultar reservas</a>             
+                    <div class="container" align="center">  
+                            <a class="btn btn-dark" href="<?= FRONT_ROOT ?>keeper/ShowModifyPerfil">Modificar perfil</a>            
+                   
+                            <a class="btn btn-dark" href="<?= FRONT_ROOT ?>reserve/ShowReserves">Consultar reservas</a>  
+                    </div>           
         </div>
     </section>
 </main>

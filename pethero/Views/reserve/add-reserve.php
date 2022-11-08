@@ -5,7 +5,7 @@ require_once(VIEWS_PATH . 'nav.php');
     <section id="listado" class="mb-5">
         <div class="container">
             <h2 class="mb-4">Nueva Reserva</h2>
-            <form action="<?php echo FRONT_ROOT ?>reserves/Register" method="post" class="bg-light-alpha p-5">
+            <form action="<?php echo FRONT_ROOT ?>reserve/Update" method="post" class="bg-light-alpha p-5" enctype="multipart/form-data">
 
                 <?php if (isset($_SESSION['error'])) { ?>
                    
@@ -19,7 +19,7 @@ require_once(VIEWS_PATH . 'nav.php');
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="form-group">
-                            <h2 class="mb-4">Lista de Guardianes</h2>
+                            <h4 class="mb-4">Lista de Guardianes</h4>
 
                                 <div >
                                     <table class="table">
@@ -60,7 +60,7 @@ require_once(VIEWS_PATH . 'nav.php');
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <div class="container px-1 px-sm-5 mx-auto">
+                                    <!--<div class="container px-1 px-sm-5 mx-auto">
                                         <form autocomplete="off">
                                             <div class="flex-row d-flex justify-content-center">
                                             <div class="col-lg-6 col-11 px-1">
@@ -75,7 +75,7 @@ require_once(VIEWS_PATH . 'nav.php');
                                             </div>
                                             </div>
                                         </form>
-                                    </div>
+                                    </div>-->
                                     <label for="">Fecha de inicio <strong class="text-danger">*</strong></label>
                                     <input type="date" name="startDate" value="" class="form-control" required>
                                 </div>

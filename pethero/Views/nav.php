@@ -1,7 +1,7 @@
-<nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
-     <span class="navbar-item">
-     <a class="nav-link" href="<?= FRONT_ROOT ?>index">Guarderia Animal Pet Hero</a>
-     </span>
+<nav class="navbar navbar-expand-lg sticky-lg-top navbar-dark bg-dark" >
+     <li class="nav-item">
+          <a class="nav-link" href="<?= FRONT_ROOT ?>user/Logout">Guarderia Animal Pet Hero</a>
+     </li>
      <ul class="navbar-nav ml-auto">
           <?php
           $user = null;

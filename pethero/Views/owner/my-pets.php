@@ -10,6 +10,7 @@ require_once(VIEWS_PATH . 'nav.php');
                 <table class="table">
                     <thead>
                         <th>Imagen</th>
+                        <th>Animal</th>
                         <th>Raza</th>
                         <th>Tamaño</th>
                         <th>Observaciones</th>
@@ -18,10 +19,11 @@ require_once(VIEWS_PATH . 'nav.php');
                     </thead>
                     <tbody>
                         <?php
-                        foreach ($pets as $item) {
+                        foreach ($pet as $item) {
                         ?>
                             <tr>
                                 <td><img src="<?= FRONT_ROOT . UPLOADS_PATH . $item->getImage() ?>" alt="" width="100"></td>
+                                <td><?= $item->descriptionAnimal() ?></td>
                                 <td><?= $item->getRace() ?></td>
                                 <td><?= $item->getSize() ?></td>
                                 <td><?= $item->getObservations() ?></td>
@@ -46,10 +48,12 @@ require_once(VIEWS_PATH . 'nav.php');
                         
                     </tbody>
                 </table>
-                    <br>              
-                         <a class="btn btn-dark ml-auto d-block" href="<?= FRONT_ROOT ?>owner/ShowNewPet">Nueva mascota</a>                
-                    <br>        
-                         <a class="btn btn-dark ml-auto d-block" href="<?= FRONT_ROOT ?>owner/ShowPerfil">Volver a perfil</a>
+                    <br>  
+                    <div class="container" align="center">             
+                         <a class="btn btn-dark " href="<?= FRONT_ROOT ?>owner/ShowNewPet">Nueva mascota</a>                
+                           
+                         <a class="btn btn-dark " href="<?= FRONT_ROOT ?>owner/ShowPerfil">Volver a perfil</a>
+                    </div>
             </div>
         </div>
     </section>
