@@ -5,13 +5,18 @@ namespace Controllers;
 use DAO\OwnerDAO as OwnerDAO;
 use DAO\PetDAO as PetDAO;
 use DAO\KeeperDAO as KeeperDAO;
+use DAO\PetTypeDAO as PetTypeDAO;
+use DAO\ReserveDAO as ReserveDAO;
 use Models\Pet as Pet;
+use Models\Reserve as Reserve;
 
 class OwnerController
 {
     private $ownerDAO;
     private $petDAO;
+    private $petTypeDAO;
     private $keeperDAO;
+    private $reserveDAO;
     private $userLogged;
 
     public function __construct()
@@ -21,7 +26,9 @@ class OwnerController
 
         $this->ownerDAO = new OwnerDAO();
         $this->petDAO = new PetDAO();
+        $this->petTypeDAO = new PetTypeDAO();
         $this->keeperDAO = new KeeperDAO();
+        $this->reserveDAO = new ReserveDAO();
         $this->userLogged = $_SESSION['user'];
     }
 
@@ -34,10 +41,11 @@ class OwnerController
 
     public function ShowNewPet()
     {
+        $petTypes = $this->petTypeDAO->GetAll();
         require_once(VIEWS_PATH . "owner/new-pet.php");
     }
 
-    public function AddPet($race, $size, $observations, $image, $vaccination_plan, $video)
+    public function AddPet($race, $size, $observations, $petTypeId, $image, $vaccination_plan, $video)
     {
         try {
 
@@ -46,6 +54,7 @@ class OwnerController
             $pet->setRace($race);
             $pet->setSize($size);
             $pet->setObservations($observations);
+            $pet->setPetType($this->petTypeDAO->Search($petTypeId));
             $pet->setOwner($owner);
 
             $imageName = date('Ymdhisu') . $image["name"];
@@ -98,7 +107,7 @@ class OwnerController
             if ($this->petDAO->Add($pet)) {
                 $_SESSION['success'] = 'Pet registered';
             } else {
-                $_SESSION['error'] = 'Pet could not be updated';
+                $_SESSION['error'] = 'Pet could not be registered';
             }
         } catch (\Throwable $th) {
             $_SESSION['error'] = 'Exception. ' . $th->getMessage();
@@ -106,9 +115,54 @@ class OwnerController
         $this->ShowNewPet();
     }
 
-    public function ShowListKeepers()
+    public function ShowListKeepers($startDate = null, $endDate = null)
     {
-        $keepers = $this->keeperDAO->GetAll();
+        $keepers = [];
+
+        if ($startDate == null && $endDate == null) {
+            $keepers = $this->keeperDAO->GetAll();
+        } else {
+            $keepers = $this->keeperDAO->GetAllByDate($startDate, $endDate);
+        }
+
         require_once(VIEWS_PATH . "owner/list-keepers.php");
+    }
+
+    public function ShowNewReserve($keeperId)
+    {
+        $owner = $this->ownerDAO->SearchByUserId($this->userLogged->getId());
+        $pets = $this->petDAO->GetAllByOwner($owner->getId());
+        require_once(VIEWS_PATH . "owner/new-reserve.php");
+    }
+
+    public function AddReserve($keeperId, $petId, $startDate, $endDate)
+    {
+        try {
+            $reserve = new Reserve();
+            $reserve->setKeeper($this->keeperDAO->Search($keeperId));
+            $reserve->setPet($this->petDAO->Search($petId));
+            $reserve->setStartDate($startDate);
+            $reserve->setEndDate($endDate);
+            $reserve->setState('Waiting');
+
+            if ($reserve->getStartDate() > $reserve->getEndDate()) {
+                $_SESSION['error'] = 'Date range is invalid';
+                $this->ShowNewReserve($keeperId);
+                return;
+            }
+
+            if ($reserve->getStartDate() >= $reserve->getKeeper()->getStartDate() && $reserve->getEndDate() <= $reserve->getKeeper()->getEndDate()) {
+                if ($this->reserveDAO->Add($reserve)) {
+                    $_SESSION['success'] = 'Reserve registered';
+                } else {
+                    $_SESSION['error'] = 'Reserve could not be registered';
+                }
+            } else {
+                $_SESSION['error'] = 'The Keeper cannot be reserved for selected dates';
+            }
+        } catch (\Throwable $th) {
+            $_SESSION['error'] = 'Exception. ' . $th->getMessage();
+        }
+        $this->ShowNewReserve($keeperId);
     }
 }

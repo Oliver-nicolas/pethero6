@@ -11,6 +11,7 @@ require_once(VIEWS_PATH . 'nav.php');
                     <thead>
                         <th>Image</th>
                         <th>Race</th>
+                        <th>Pet Type</th>
                         <th>Size</th>
                         <th>Observations</th>
                         <th>Vaccination plan</th>
@@ -23,6 +24,7 @@ require_once(VIEWS_PATH . 'nav.php');
                             <tr>
                                 <td><img src="<?= FRONT_ROOT . UPLOADS_PATH . $item->getImage() ?>" alt="" width="100"></td>
                                 <td><?= $item->getRace() ?></td>
+                                <td><?= $item->getPetType() ?></td>
                                 <td><?= $item->getSize() ?></td>
                                 <td><?= $item->getObservations() ?></td>
                                 <td><img src="<?= FRONT_ROOT . UPLOADS_PATH . $item->getVaccination_plan() ?>" alt="" width="100"></td>

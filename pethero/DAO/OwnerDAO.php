@@ -1,110 +1,127 @@
 <?php
-    namespace DAO;
 
-    use DAO\IOwnerDAO as IOwnerDAO;
-    use Models\Owner as Owner;
+namespace DAO;
 
-    use DAO\UserDAO as UserDAO;
+use DAO\IOwnerDAO as IOwnerDAO;
+use Models\Owner as Owner;
 
-    class OwnerDAO implements IOwnerDAO
+use DAO\UserDAO as UserDAO;
+
+use Exception;
+
+class OwnerDAO implements IOwnerDAO
+{
+    private $connection;
+    private $tableName = "owners";
+
+    private $userDAO;
+
+    public function __construct()
     {
-        private $ownerList = array();
-        private $userDAO;
+        $this->userDAO = new UserDAO();
+    }
 
-        public function __construct(){
-            $this->userDAO = new UserDAO();
-        }
+    public function Add(Owner $owner)
+    {
+        try {
 
-        public function GenerateId()
-        {
-            $registers = count($this->ownerList);
-            if($registers > 0){
-                return $this->ownerList[$registers - 1]->getId() + 1;
-            }
-            return 1;
-        }
+            $query = "INSERT INTO " . $this->tableName . " (id, name, lastname, address, userId) VALUES (:id, :name, :lastname, :address, :userId);";
+            $parameters["id"] = 0;
+            $parameters["name"] = $owner->getName();
+            $parameters["lastname"] = $owner->getLastname();
+            $parameters["address"] = $owner->getAddress();
+            $parameters["userId"] = $owner->getUser()->getId();
 
-        public function Add(Owner $owner)
-        {
-            $this->RetrieveData();
+            $this->connection = Connection::GetInstance();
 
-            $owner->setId($this->GenerateId());
-            array_push($this->ownerList, $owner);
+            $this->connection->ExecuteNonQuery($query, $parameters);
 
-            $this->SaveData();
             return true;
+        } catch (Exception $ex) {
+            throw $ex;
         }
+        return false;
+    }
 
-        public function Search($id){
-            $this->RetrieveData();
+    public function Search($id)
+    {
+        try {
+            $query = "SELECT * FROM " . $this->tableName . " WHERE id = :id";
+            $parameters["id"] = $id;
 
-            foreach($this->ownerList as $owner){
-                if($owner->getId() == $id){
-                    return $owner;
-                }
+            $this->connection = Connection::GetInstance();
+
+            $resultSet = $this->connection->Execute($query, $parameters);
+
+            foreach ($resultSet as $row) {
+                $owner = new Owner();
+                $owner->setId($row["id"]);
+                $owner->setName($row["name"]);
+                $owner->setLastname($row["lastname"]);
+                $owner->setAddress($row["address"]);
+                $owner->setUser($this->userDAO->Search($row["userId"]));
+
+                return $owner;
             }
+
             return null;
-        }
-
-        function SearchByUserId($userId){
-            $this->RetrieveData();
-
-            foreach($this->ownerList as $owner){
-                if($owner->getUser()->getId() == $userId){
-                    return $owner;
-                }
-            }
-            return null;
-        }
-
-        public function GetAll()
-        {
-            $this->RetrieveData();
-
-            return $this->ownerList;
-        }
-        
-        private function SaveData()
-        {
-            $arrayToEncode = array();
-
-            foreach($this->ownerList as $owner)
-            {
-                $valuesArray["id"] = $owner->getId();
-                $valuesArray["name"] = $owner->getName();
-                $valuesArray["lastname"] = $owner->getLastname();
-                $valuesArray["address"] = $owner->getAddress();
-                $valuesArray["userId"] = $owner->getUser()->getId();
-
-                array_push($arrayToEncode, $valuesArray);
-            }
-
-            $jsonContent = json_encode($arrayToEncode, JSON_PRETTY_PRINT);
-            
-            file_put_contents('Data/owners.json', $jsonContent);
-        }
-
-        private function RetrieveData()
-        {
-            $this->ownerList = array();
-
-            if(file_exists('Data/owners.json'))
-            {
-                $jsonContent = file_get_contents('Data/owners.json');
-
-                $arrayToDecode = ($jsonContent) ? json_decode($jsonContent, true) : array();
-
-                foreach($arrayToDecode as $valuesArray)
-                {
-                    $owner = new Owner();
-                    $owner->setId($valuesArray["id"]);
-                    $owner->setName($valuesArray["name"]);
-                    $owner->setLastname($valuesArray["lastname"]);
-                    $owner->setAddress($valuesArray["address"]);
-                    $owner->setUser($this->userDAO->Search($valuesArray["userId"]));
-
-                    array_push($this->ownerList, $owner);
-                }
-            }
+        } catch (Exception $ex) {
+            throw $ex;
         }
     }
+
+    function SearchByUserId($userId)
+    {
+        try {
+            $query = "SELECT * FROM " . $this->tableName . " WHERE userId = :userId";
+            $parameters["userId"] = $userId;
+
+            $this->connection = Connection::GetInstance();
+
+            $resultSet = $this->connection->Execute($query, $parameters);
+
+            foreach ($resultSet as $row) {
+                $owner = new Owner();
+                $owner->setId($row["id"]);
+                $owner->setName($row["name"]);
+                $owner->setLastname($row["lastname"]);
+                $owner->setAddress($row["address"]);
+                $owner->setUser($this->userDAO->Search($row["userId"]));
+
+                return $owner;
+            }
+
+            return null;
+        } catch (Exception $ex) {
+            throw $ex;
+        }
+    }
+
+    public function GetAll()
+    {
+        try {
+            $ownerList = array();
+
+            $query = "SELECT * FROM " . $this->tableName;
+
+            $this->connection = Connection::GetInstance();
+
+            $resultSet = $this->connection->Execute($query);
+
+            foreach ($resultSet as $row) {
+                $owner = new Owner();
+                $owner->setId($row["id"]);
+                $owner->setName($row["name"]);
+                $owner->setLastname($row["lastname"]);
+                $owner->setAddress($row["address"]);
+                $owner->setUser($this->userDAO->Search($row["userId"]));
+
+                array_push($ownerList, $owner);
+            }
+
+            return $ownerList;
+        } catch (Exception $ex) {
+            throw $ex;
+        }
+    }
+}

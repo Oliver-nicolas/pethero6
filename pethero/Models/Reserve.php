@@ -9,7 +9,7 @@ class Reserve
     private $pet;
     private $startDate;
     private $endDate;
-    private $accepted;
+    private $state;
     private $cupon_generated;
 
     /**
@@ -113,26 +113,6 @@ class Reserve
     }
 
     /**
-     * Get the value of accepted
-     */
-    public function getAccepted()
-    {
-        return $this->accepted;
-    }
-
-    /**
-     * Set the value of accepted
-     *
-     * @return  self
-     */
-    public function setAccepted($accepted)
-    {
-        $this->accepted = $accepted;
-
-        return $this;
-    }
-
-    /**
      * Get the value of cupon_generated
      */
     public function getCupon_generated()
@@ -148,6 +128,26 @@ class Reserve
     public function setCupon_generated($cupon_generated)
     {
         $this->cupon_generated = $cupon_generated;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of state
+     */ 
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    /**
+     * Set the value of state
+     *
+     * @return  self
+     */ 
+    public function setState($state)
+    {
+        $this->state = $state;
 
         return $this;
     }

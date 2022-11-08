@@ -1,100 +1,116 @@
 <?php
-    namespace DAO;
 
-    use DAO\IPetDAO as IPetDAO;
-    use Models\Pet as Pet;
+namespace DAO;
 
-    use DAO\OwnerDAO as OwnerDAO;
+use DAO\IPetDAO as IPetDAO;
+use Models\Pet as Pet;
 
-    class PetDAO implements IPetDAO
+use DAO\OwnerDAO as OwnerDAO;
+use DAO\PetTypeDAO as PetTypeDAO;
+
+use Exception;
+
+class PetDAO implements IPetDAO
+{
+    private $connection;
+    private $tableName = "pets";
+
+    private $ownerDAO;
+    private $petTypeDAO;
+
+    public function __construct()
     {
-        private $petList = array();
-        private $ownerDAO;
+        $this->ownerDAO = new OwnerDAO();
+        $this->petTypeDAO = new PetTypeDAO();
+    }
 
-        public function __construct(){
-            $this->ownerDAO = new OwnerDAO();
-        }
+    public function Add(Pet $pet)
+    {
+        try {
 
-        public function GenerateId()
-        {
-            $registers = count($this->petList);
-            if($registers > 0){
-                return $this->petList[$registers - 1]->getId() + 1;
-            }
-            return 1;
-        }
+            $query = "INSERT INTO " . $this->tableName . " (id, race, size, observations, image, vaccinationPlan, video, ownerId, petTypeId) VALUES (:id, :race, :size, :observations, :image, :vaccinationPlan, :video, :ownerId, :petTypeId);";
+            $parameters["id"] = 0;
+            $parameters["race"] = $pet->getRace();
+            $parameters["size"] = $pet->getSize();
+            $parameters["observations"] = $pet->getObservations();
+            $parameters["image"] = $pet->getImage();
+            $parameters["vaccinationPlan"] = $pet->getVaccination_plan();
+            $parameters["video"] = $pet->getVideo();
+            $parameters["ownerId"] = $pet->getOwner()->getId();
+            $parameters["petTypeId"] = $pet->getPetType()->getId();
 
-        public function Add(Pet $pet)
-        {
-            $this->RetrieveData();
+            $this->connection = Connection::GetInstance();
 
-            $pet->setId($this->GenerateId());
-            array_push($this->petList, $pet);
+            $this->connection->ExecuteNonQuery($query, $parameters);
 
-            $this->SaveData();
             return true;
+        } catch (Exception $ex) {
+            throw $ex;
         }
+        return false;
+    }
 
-        function GetAllByOwner($ownerId){
-            $this->RetrieveData();
+    public function Search($id)
+    {
+        try {
+            $query = "SELECT * FROM " . $this->tableName . " WHERE id = :id";
+            $parameters["id"] = $id;
 
-            $data = array();
+            $this->connection = Connection::GetInstance();
 
-            foreach($this->petList as $pet){
-                if($pet->getOwner()->getId() == $ownerId){
-                    array_push($data, $pet);
-                }
-            }
-            return $data;
-        }
-        
-        private function SaveData()
-        {
-            $arrayToEncode = array();
+            $resultSet = $this->connection->Execute($query, $parameters);
 
-            foreach($this->petList as $pet)
-            {
-                $valuesArray["id"] = $pet->getId();
-                $valuesArray["race"] = $pet->getRace();
-                $valuesArray["size"] = $pet->getSize();
-                $valuesArray["observations"] = $pet->getObservations();
-                $valuesArray["image"] = $pet->getImage();
-                $valuesArray["vaccinationPlan"] = $pet->getVaccination_plan();
-                $valuesArray["video"] = $pet->getVideo();
-                $valuesArray["ownerId"] = $pet->getOwner()->getId();
+            foreach ($resultSet as $row) {
+                $pet = new Pet();
+                $pet->setId($row["id"]);
+                $pet->setRace($row["race"]);
+                $pet->setSize($row["size"]);
+                $pet->setObservations($row["observations"]);
+                $pet->setImage($row["image"]);
+                $pet->setVaccination_plan($row["vaccinationPlan"]);
+                $pet->setVideo($row["video"]);
+                $pet->setOwner($this->ownerDAO->Search($row["ownerId"]));
+                $pet->setPetType($this->petTypeDAO->Search($row["petTypeId"]));
 
-                array_push($arrayToEncode, $valuesArray);
+                return $pet;
             }
 
-            $jsonContent = json_encode($arrayToEncode, JSON_PRETTY_PRINT);
-            
-            file_put_contents('Data/pets.json', $jsonContent);
-        }
-
-        private function RetrieveData()
-        {
-            $this->petList = array();
-
-            if(file_exists('Data/pets.json'))
-            {
-                $jsonContent = file_get_contents('Data/pets.json');
-
-                $arrayToDecode = ($jsonContent) ? json_decode($jsonContent, true) : array();
-
-                foreach($arrayToDecode as $valuesArray)
-                {
-                    $pet = new Pet();
-                    $pet->setId($valuesArray["id"]);
-                    $pet->setRace($valuesArray["race"]);
-                    $pet->setSize($valuesArray["size"]);
-                    $pet->setObservations($valuesArray["observations"]);
-                    $pet->setImage($valuesArray["image"]);
-                    $pet->setVaccination_plan($valuesArray["vaccinationPlan"]);
-                    $pet->setVideo($valuesArray["video"]);
-                    $pet->setOwner($this->ownerDAO->Search($valuesArray["ownerId"]));
-
-                    array_push($this->petList, $pet);
-                }
-            }
+            return null;
+        } catch (Exception $ex) {
+            throw $ex;
         }
     }
+
+    function GetAllByOwner($ownerId)
+    {
+        try {
+            $petList = array();
+
+            $query = "SELECT * FROM " . $this->tableName . " WHERE ownerId = :ownerId";
+            $parameters["ownerId"] = $ownerId;
+
+            $this->connection = Connection::GetInstance();
+
+            $resultSet = $this->connection->Execute($query, $parameters);
+
+            foreach ($resultSet as $row) {
+                $pet = new Pet();
+                $pet->setId($row["id"]);
+                $pet->setRace($row["race"]);
+                $pet->setSize($row["size"]);
+                $pet->setObservations($row["observations"]);
+                $pet->setImage($row["image"]);
+                $pet->setVaccination_plan($row["vaccinationPlan"]);
+                $pet->setVideo($row["video"]);
+                $pet->setOwner($this->ownerDAO->Search($row["ownerId"]));
+                $pet->setPetType($this->petTypeDAO->Search($row["petTypeId"]));
+
+                array_push($petList, $pet);
+            }
+            return $petList;
+        } catch (Exception $ex) {
+            throw $ex;
+        }
+        return null;
+    }
+}

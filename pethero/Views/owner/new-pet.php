@@ -5,7 +5,7 @@ require_once(VIEWS_PATH . 'nav.php');
     <section id="listado" class="mb-5">
         <div class="container">
             <h2 class="mb-4">New Pet</h2>
-            <form action="<?php echo FRONT_ROOT ?>Owner/AddPet" method="post" class="bg-light-alpha p-5" enctype="multipart/form-data">
+            <form action="<?= FRONT_ROOT ?>Owner/AddPet" method="post" class="bg-light-alpha p-5" enctype="multipart/form-data">
                 <?php if (isset($_SESSION['error'])) { ?>
                     <div class="alert alert-danger alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -30,7 +30,7 @@ require_once(VIEWS_PATH . 'nav.php');
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label for="">Size <strong class="text-danger">*</strong></label>
-                            <select name="size" class="form-control">
+                            <select name="size" class="form-control" required>
                                 <option value="Small">Small</option>
                                 <option value="Medium">Medium</option>
                                 <option value="Big">Big</option>
@@ -44,6 +44,19 @@ require_once(VIEWS_PATH . 'nav.php');
                         <div class="form-group">
                             <label for="">Observations <strong class="text-danger">*</strong></label>
                             <textarea name="observations" rows="5" class="form-control"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label for="">Pet Type <strong class="text-danger">*</strong></label>
+                            <select name="petTypeId" class="form-control" required>
+                                <?php foreach ($petTypes as $item) { ?>
+                                    <option value="<?= $item->getId() ?>"><?= $item ?></option>
+                                <?php } ?>
+                            </select>
                         </div>
                     </div>
                 </div>

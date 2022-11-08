@@ -16,6 +16,9 @@
                     <li class="nav-item">
                          <a class="nav-link" href="<?= FRONT_ROOT ?>Keeper/ShowPerfil">@<?= $user->getUsername() ?></a>
                     </li>
+                    <li class="nav-item">
+                         <a class="nav-link" href="<?= FRONT_ROOT ?>Keeper/ShowMyReserves">My Reserves</a>
+                    </li>
                <?php
                } elseif ($user->isOwner()) {
                ?>

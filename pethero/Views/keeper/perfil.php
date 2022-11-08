@@ -5,7 +5,8 @@ require_once(VIEWS_PATH . 'nav.php');
     <section id="listado" class="mb-5">
         <div class="container">
             <h2 class="mb-4">My Perfil</h2>
-            <form action="<?php echo FRONT_ROOT ?>Keeper/Update" method="post" class="bg-light-alpha p-5">
+            <form action="<?= FRONT_ROOT ?>Keeper/Update" method="post" class="bg-light-alpha p-5">
+            
                 <?php if (isset($_SESSION['error'])) { ?>
                     <div class="alert alert-danger alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -48,7 +49,7 @@ require_once(VIEWS_PATH . 'nav.php');
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label for="">Start Date <strong class="text-danger">*</strong></label>
-                            <input type="date" name="startDate" max="<?= $keeper->getEndDate()?>" min="<?php echo date('Y-m-d') ?>" value="<?= $keeper->getStartdate() ?>" class="form-control" required>
+                            <input type="date" name="startDate" max="<?= $keeper->getEndDate()?>" min="<?= date('Y-m-d') ?>" value="<?= $keeper->getStartdate() ?>" class="form-control" required>
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -61,7 +62,7 @@ require_once(VIEWS_PATH . 'nav.php');
                                 <?php
                                 } else {
                                 ?>
-                                    <input type="date" name="endDate" min="<?php echo date('Y-m-d') ?>" value="<?= $keeper->getEndDate() ?>" class="form-control" required>
+                                    <input type="date" name="endDate" min="<?= date('Y-m-d') ?>" value="<?= $keeper->getEndDate() ?>" class="form-control" required>
                                 <?php
                                 }
                                 ?>

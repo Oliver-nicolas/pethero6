@@ -77,7 +77,7 @@ class UserController
                     $owner->setName($name);
                     $owner->setLastname($lastName);
                     $owner->setAddress($address);
-                    $owner->setUser($user);
+                    $owner->setUser($this->userDAO->GetByUsername($username));
 
                     $this->ownerDAO->Add($owner);
                 } elseif ($user->getUsertype()->getType() == 'Keeper') {
@@ -85,7 +85,7 @@ class UserController
                     $keeper->setName($name);
                     $keeper->setLastname($lastName);
                     $keeper->setAddress($address);
-                    $keeper->setUser($user);
+                    $keeper->setUser($this->userDAO->GetByUsername($username));
 
                     $this->keeperDAO->Add($keeper);
                 }
@@ -96,7 +96,7 @@ class UserController
                 $_SESSION['error'] = 'The username exists';
             }
         } catch (\Throwable $th) {
-            $_SESSION['error'] = 'Exception. ' . $th->getMessage();
+            $_SESSION['error'] = 'Exception1. ' . $th->getMessage();
         }
         $this->ShowRegister();
     }

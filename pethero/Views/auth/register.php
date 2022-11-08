@@ -5,7 +5,7 @@ require_once(VIEWS_PATH . 'nav.php');
     <section id="listado" class="mb-5">
         <div class="container">
             <h2 class="mb-4">Create a account</h2>
-            <form action="<?php echo FRONT_ROOT ?>User/Register" method="post" class="bg-light-alpha p-5">
+            <form action="<?= FRONT_ROOT ?>User/Register" method="post" class="bg-light-alpha p-5">
 
                 <?php if (isset($_SESSION['error'])) { ?>
                     <div class="alert alert-danger alert-dismissable">

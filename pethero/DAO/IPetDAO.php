@@ -5,7 +5,6 @@
 
     interface IPetDAO
     {
-        function GenerateId();
-        function Add(Pet $student);
+        function Add(Pet $pet);
         function GetAllByOwner($ownerId);
     }

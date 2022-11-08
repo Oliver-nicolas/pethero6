@@ -5,7 +5,7 @@
 
     interface IUserTypeDAO
     {
-        function Add(UserType $student);
+        function Add(UserType $userType);
         function Search($id);
         function GetAll();
     }
