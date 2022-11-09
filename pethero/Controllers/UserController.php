@@ -58,7 +58,11 @@ class UserController
         require_once(VIEWS_PATH . "auth/register.php");
     }
 
+
     public function Register($name, $lastName, $address, $username, $password, $userTypeId)
+=======
+    public function Register($name, $lastname, $address, $username, $password, $userTypeId)
+
     {
         unset($_SESSION['error']);
         unset($_SESSION['success']);
