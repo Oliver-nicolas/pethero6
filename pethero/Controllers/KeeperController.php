@@ -27,7 +27,11 @@ class KeeperController
         require_once(VIEWS_PATH . "keeper/perfil.php");
     }
 
+
+    public function Update($name, $lastName, $address, $startDate, $endDate, $days, $price)
+=======
     public function Update($name, $lastname, $address, $startDate, $endDate, $days, $price)
+
     {
         try {
 
@@ -44,7 +48,7 @@ class KeeperController
 
             $keeper = $this->keeperDAO->SearchByUserId($this->userLogged->getId());
             $keeper->setName($name);
-            $keeper->setLastname($lastname);
+            $keeper->setLastname($lastName);
             $keeper->setAddress($address);
             $keeper->setPrice($price);
             $keeper->setStartdate($startDate);
