@@ -14,7 +14,7 @@ class KeeperController
     public function __construct()
     {
         AuthController::validateLogged();
-        AuthController::validateRole('Guardian');
+        AuthController::validateRole('Keeper');
 
         $this->keeperDAO = new KeeperDAO();
         $this->reserveDAO = new ReserveDAO();
@@ -24,43 +24,38 @@ class KeeperController
     public function ShowPerfil()
     {
         $keeper = $this->keeperDAO->SearchByUserId($this->userLogged->getId());
-        $keeperList = $this->keeperDAO->GetAll();
-        require_once(VIEWS_PATH . "keeper/mainKeeper.php");
-    }
-
-    public function ShowModifyPerfil()
-    {
-        $keeper = $this->keeperDAO->SearchByUserId($this->userLogged->getId());
         require_once(VIEWS_PATH . "keeper/perfil.php");
     }
 
-    public function Update($name, $lastname, $address, $price)
+    public function Update($name, $lastName, $address, $startDate, $endDate, $days, $price)
     {
         try {
 
             $sizePet = array();
             if(isset($_POST['small'])){
-                array_push($sizePet, 'small');
+                array_push($sizePet, 'Small');
             }
             if(isset($_POST['medium'])){
-                array_push($sizePet, 'medium');
+                array_push($sizePet, 'Medium');
             }
             if(isset($_POST['big'])){
-                array_push($sizePet, 'big');
+                array_push($sizePet, 'Big');
             }
 
             $keeper = $this->keeperDAO->SearchByUserId($this->userLogged->getId());
             $keeper->setName($name);
-            $keeper->setLastname($lastname);
+            $keeper->setLastname($lastName);
             $keeper->setAddress($address);
             $keeper->setPrice($price);
-           
+            $keeper->setStartdate($startDate);
+            $keeper->setEnddate($endDate);
+            $keeper->setDays($days);
             $keeper->setSizePet($sizePet);
 
             if ($this->keeperDAO->Update($keeper)) {
-                $_SESSION['success'] = 'Guardian actualizado';
+                $_SESSION['success'] = 'Keeper updated';
             } else {
-                $_SESSION['error'] = 'No se pudo actualizar el guardian';
+                $_SESSION['error'] = 'Keeper could not be updated';
             }
             
         } catch (\Throwable $th) {
