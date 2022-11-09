@@ -4,8 +4,8 @@ require_once(VIEWS_PATH . 'nav.php');
 <main class="py-5">
     <section id="listado" class="mb-5">
         <div class="container">
-            <h2 class="mb-4"><strong> Registro de usuario</strong></h2>
-            <form action="<?php echo FRONT_ROOT ?>User/Register" method="post" class="bg-light-alpha p-5">
+            <h2 class="mb-4">Create a account</h2>
+            <form action="<?= FRONT_ROOT ?>User/Register" method="post" class="bg-light-alpha p-5">
 
                 <?php if (isset($_SESSION['error'])) { ?>
                     <div class="alert alert-danger alert-dismissable">
@@ -17,13 +17,13 @@ require_once(VIEWS_PATH . 'nav.php');
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label for="">Nombre <strong class="text-danger">*</strong></label>
+                            <label for="">Name <strong class="text-danger">*</strong></label>
                             <input type="text" name="name" value="" class="form-control" required>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label for="">Apellido <strong class="text-danger">*</strong></label>
+                            <label for="">Lastname <strong class="text-danger">*</strong></label>
                             <input type="text" name="lastname" value="" class="form-control" required>
                         </div>
                     </div>
@@ -32,7 +32,7 @@ require_once(VIEWS_PATH . 'nav.php');
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="form-group">
-                            <label for="">Dirección <strong class="text-danger">*</strong></label>
+                            <label for="">Address <strong class="text-danger">*</strong></label>
                             <input type="text" name="address" value="" class="form-control" required>
                         </div>
                     </div>
@@ -41,13 +41,13 @@ require_once(VIEWS_PATH . 'nav.php');
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label for="">Nombre de usuario <strong class="text-danger">*</strong></label>
+                            <label for="">Username <strong class="text-danger">*</strong></label>
                             <input type="text" name="username" value="" class="form-control" required>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label for="">Contraseña <strong class="text-danger">*</strong></label>
+                            <label for="">Password <strong class="text-danger">*</strong></label>
                             <input type="password" name="password" value="" class="form-control" required>
                         </div>
                     </div>
@@ -56,7 +56,7 @@ require_once(VIEWS_PATH . 'nav.php');
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label for="">Tipo de usuario <strong class="text-danger">*</strong></label>
+                            <label for="">User type <strong class="text-danger">*</strong></label>
                             <select name="usertype" class="form-control" required>
                                 <?php
                                 foreach ($usertypes as $item) {
@@ -72,7 +72,7 @@ require_once(VIEWS_PATH . 'nav.php');
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-dark ml-auto d-block">Registrar</button>
+                <button type="submit" class="btn btn-dark ml-auto d-block">Register</button>
             </form>
 
 

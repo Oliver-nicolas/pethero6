@@ -5,11 +5,9 @@
 
     interface IKeeperDAO
     {
-        function GenerateId();
         function Add(Keeper $keeper);
         function Update(Keeper $keeper);
         function Search($id);
         function SearchByUserId($userId);
         function GetAll();
     }
-    ?>

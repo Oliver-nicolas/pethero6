@@ -5,7 +5,6 @@
 
     interface IUserDAO
     {
-        function GenerateId();
         function Add(User $user);
         function GetByUsername($username);
         function Search($id);

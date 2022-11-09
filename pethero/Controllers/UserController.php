@@ -39,11 +39,11 @@ class UserController
             $_SESSION['user'] = $user;
 
             if ($user->isOwner()) {
-                header('Location: ../owner/ShowPerfil');
+                header('Location: ../Owner/ShowMyPets');
             } elseif ($user->isKeeper()) {
-                header('Location: ../keeper/ShowPerfil');
+                header('Location: ../Keeper/ShowPerfil');
             } elseif ($user->isAdmin()) {
-                header('Location: ../admin/');
+                header('Location: ../Admin/');
             }
 
             return;
@@ -58,7 +58,7 @@ class UserController
         require_once(VIEWS_PATH . "auth/register.php");
     }
 
-    public function Register($name, $lastname, $address, $username, $password, $usertype)
+    public function Register($name, $lastname, $address, $username, $password, $userTypeId)
     {
         unset($_SESSION['error']);
         unset($_SESSION['success']);
@@ -68,24 +68,24 @@ class UserController
             $user = new User();
             $user->setUsername($username);
             $user->setPassword($password);
-            $user->setUsertype($this->userTypeDAO->Search($usertype));
+            $user->setUsertype($this->userTypeDAO->Search($userTypeId));
 
             if ($this->userDAO->Add($user)) {
 
-                if ($user->getUsertype()->getType() == 'Dueño') {
+                if ($user->getUsertype()->getType() == 'Owner') {
                     $owner = new Owner();
                     $owner->setName($name);
                     $owner->setLastname($lastname);
                     $owner->setAddress($address);
-                    $owner->setUser($user);
+                    $owner->setUser($this->userDAO->GetByUsername($username));
 
                     $this->ownerDAO->Add($owner);
-                } elseif ($user->getUsertype()->getType() == 'Guardian') {
+                } elseif ($user->getUsertype()->getType() == 'Keeper') {
                     $keeper = new Keeper();
                     $keeper->setName($name);
                     $keeper->setLastname($lastname);
                     $keeper->setAddress($address);
-                    $keeper->setUser($user);
+                    $keeper->setUser($this->userDAO->GetByUsername($username));
 
                     $this->keeperDAO->Add($keeper);
                 }
@@ -93,10 +93,10 @@ class UserController
                 $this->ShowLogin();
                 return;
             } else {
-                $_SESSION['error'] = 'El nombre de usuario ya existe';
+                $_SESSION['error'] = 'The username exists';
             }
         } catch (\Throwable $th) {
-            $_SESSION['error'] = 'Exception. ' . $th->getMessage();
+            $_SESSION['error'] = 'Exception1. ' . $th->getMessage();
         }
         $this->ShowRegister();
     }

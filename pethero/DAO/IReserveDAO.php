@@ -5,10 +5,11 @@
 
     interface IReserveDAO
     {
-        function GenerateId();
         function Add(Reserve $reserve);
+        function Accept(Reserve $reserve);
+        function Decline(Reserve $reserve);
         function Search($id);
-        function SearchByUserId($userId);
-        function GetAll();
+        function GetAllByKeeper($keeperId);
+        function GetAllByOwner($ownerId);
     }
-    ?>
+?>

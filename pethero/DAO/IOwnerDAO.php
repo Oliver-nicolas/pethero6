@@ -5,10 +5,8 @@
 
     interface IOwnerDAO
     {
-        function GenerateId();
         function Add(Owner $owner);
         function Search($id);
         function SearchByUserId($userId);
         function GetAll();
     }
-    ?>

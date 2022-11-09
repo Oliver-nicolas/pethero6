@@ -5,78 +5,57 @@ namespace Controllers;
 use DAO\OwnerDAO as OwnerDAO;
 use DAO\PetDAO as PetDAO;
 use DAO\KeeperDAO as KeeperDAO;
+use DAO\PetTypeDAO as PetTypeDAO;
+use DAO\ReserveDAO as ReserveDAO;
 use Models\Pet as Pet;
+use Models\Reserve as Reserve;
 
 class OwnerController
 {
     private $ownerDAO;
     private $petDAO;
+    private $petTypeDAO;
     private $keeperDAO;
+    private $reserveDAO;
     private $userLogged;
 
     public function __construct()
     {
         AuthController::validateLogged();
-        AuthController::validateRole('Dueño');
+        AuthController::validateRole('Owner');
 
         $this->ownerDAO = new OwnerDAO();
         $this->petDAO = new PetDAO();
+        $this->petTypeDAO = new PetTypeDAO();
         $this->keeperDAO = new KeeperDAO();
+        $this->reserveDAO = new ReserveDAO();
         $this->userLogged = $_SESSION['user'];
-    }
-
-    public function ShowPerfil()
-    {
-        $owner = $this->ownerDAO->SearchByUserId($this->userLogged->getId());
-        $ownerList = $this->ownerDAO->GetAll();
-        require_once(VIEWS_PATH . "owner/mainOwner.php");
-    }
-
-    public function ShowModifyPerfil()
-    {
-        $owner = $this->ownerDAO->SearchByUserId($this->userLogged->getId());
-        require_once(VIEWS_PATH . "auth/register.php");
     }
 
     public function ShowMyPets()
     {
         $owner = $this->ownerDAO->SearchByUserId($this->userLogged->getId());
-        $pet = $this->petDAO->GetAll();
+        $pets = $this->petDAO->GetAllByOwner($owner->getId());
         require_once(VIEWS_PATH . "owner/my-pets.php");
     }
 
     public function ShowNewPet()
     {
-        $owner = $this->ownerDAO->SearchByUserId($this->userLogged->getId());
-        $pet = $this->petDAO->GetAllByOwner($owner->getId());
+        $petTypes = $this->petTypeDAO->GetAll();
         require_once(VIEWS_PATH . "owner/new-pet.php");
     }
 
-    public function AddPet($animal, $race, $size, $observations, $image, $vaccination_plan, $video)
+    public function AddPet($race, $size, $observations, $petTypeId, $image, $vaccination_plan, $video)
     {
         try {
 
-            $animal = array();
-            if(isset($_POST['Perro'])){
-                array_push($animal, 'Perro');
-            }
-            if(isset($_POST['Gato'])){
-                array_push($animal, 'Gato');
-            }
-           
             $owner = $this->ownerDAO->SearchByUserId($this->userLogged->getId());
             $pet = new Pet();
-            
             $pet->setRace($race);
             $pet->setSize($size);
             $pet->setObservations($observations);
+            $pet->setPetType($this->petTypeDAO->Search($petTypeId));
             $pet->setOwner($owner);
-            
-            $pet->setAnimal($animal);
-
-            if($pet->getAnimal()=='Gato'){
-                $pet->setSize('Pequeño');
-            }
 
             $imageName = date('Ymdhisu') . $image["name"];
             $tempImageName = $image["tmp_name"];
@@ -111,7 +90,7 @@ class OwnerController
                     return;
                 }
             } else {
-                $_SESSION['error'] = "El plan vacunatorio no corresponde a una imágen";
+                $_SESSION['error'] = "El archivo Vaccination plan no corresponde a una imágen";
             }
 
             $imageName = date('Ymdhisu') . $video["name"];
@@ -126,19 +105,64 @@ class OwnerController
             }
 
             if ($this->petDAO->Add($pet)) {
-                $_SESSION['success'] = 'Mascota registrada';
+                $_SESSION['success'] = 'Pet registered';
             } else {
-                $_SESSION['error'] = 'La mascota no se puedo registrar';
+                $_SESSION['error'] = 'Pet could not be registered';
             }
         } catch (\Throwable $th) {
             $_SESSION['error'] = 'Exception. ' . $th->getMessage();
         }
-        $this->ShowMyPets();
+        $this->ShowNewPet();
     }
 
-    public function ShowListKeepers()
+    public function ShowListKeepers($startDate = null, $endDate = null)
     {
-        $keepers = $this->keeperDAO->GetAll();
+        $keepers = [];
+
+        if ($startDate == null && $endDate == null) {
+            $keepers = $this->keeperDAO->GetAll();
+        } else {
+            $keepers = $this->keeperDAO->GetAllByDate($startDate, $endDate);
+        }
+
         require_once(VIEWS_PATH . "owner/list-keepers.php");
+    }
+
+    public function ShowNewReserve($keeperId)
+    {
+        $owner = $this->ownerDAO->SearchByUserId($this->userLogged->getId());
+        $pets = $this->petDAO->GetAllByOwner($owner->getId());
+        require_once(VIEWS_PATH . "owner/new-reserve.php");
+    }
+
+    public function AddReserve($keeperId, $petId, $startDate, $endDate)
+    {
+        try {
+            $reserve = new Reserve();
+            $reserve->setKeeper($this->keeperDAO->Search($keeperId));
+            $reserve->setPet($this->petDAO->Search($petId));
+            $reserve->setStartDate($startDate);
+            $reserve->setEndDate($endDate);
+            $reserve->setState('Waiting');
+
+            if ($reserve->getStartDate() > $reserve->getEndDate()) {
+                $_SESSION['error'] = 'Date range is invalid';
+                $this->ShowNewReserve($keeperId);
+                return;
+            }
+
+            if ($reserve->getStartDate() >= $reserve->getKeeper()->getStartDate() && $reserve->getEndDate() <= $reserve->getKeeper()->getEndDate()) {
+                if ($this->reserveDAO->Add($reserve)) {
+                    $_SESSION['success'] = 'Reserve registered';
+                } else {
+                    $_SESSION['error'] = 'Reserve could not be registered';
+                }
+            } else {
+                $_SESSION['error'] = 'The Keeper cannot be reserved for selected dates';
+            }
+        } catch (\Throwable $th) {
+            $_SESSION['error'] = 'Exception. ' . $th->getMessage();
+        }
+        $this->ShowNewReserve($keeperId);
     }
 }

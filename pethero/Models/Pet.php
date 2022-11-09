@@ -5,7 +5,6 @@ namespace Models;
 class Pet
 {
     private $id;
-    private $animal = array();
     private $image;
     private $race;
     private $size;
@@ -13,11 +12,12 @@ class Pet
     private $observations;
     private $video;
     private $owner;
-    
+    private $petType;
+
 
     /**
      * Get the value of id
-     */ 
+     */
     public function getId()
     {
         return $this->id;
@@ -27,7 +27,7 @@ class Pet
      * Set the value of id
      *
      * @return  self
-     */ 
+     */
     public function setId($id)
     {
         $this->id = $id;
@@ -37,7 +37,7 @@ class Pet
 
     /**
      * Get the value of image
-     */ 
+     */
     public function getImage()
     {
         return $this->image;
@@ -47,7 +47,7 @@ class Pet
      * Set the value of image
      *
      * @return  self
-     */ 
+     */
     public function setImage($image)
     {
         $this->image = $image;
@@ -57,7 +57,7 @@ class Pet
 
     /**
      * Get the value of race
-     */ 
+     */
     public function getRace()
     {
         return $this->race;
@@ -67,7 +67,7 @@ class Pet
      * Set the value of race
      *
      * @return  self
-     */ 
+     */
     public function setRace($race)
     {
         $this->race = $race;
@@ -77,7 +77,7 @@ class Pet
 
     /**
      * Get the value of size
-     */ 
+     */
     public function getSize()
     {
         return $this->size;
@@ -87,7 +87,7 @@ class Pet
      * Set the value of size
      *
      * @return  self
-     */ 
+     */
     public function setSize($size)
     {
         $this->size = $size;
@@ -97,7 +97,7 @@ class Pet
 
     /**
      * Get the value of vaccination_plan
-     */ 
+     */
     public function getVaccination_plan()
     {
         return $this->vaccination_plan;
@@ -107,7 +107,7 @@ class Pet
      * Set the value of vaccination_plan
      *
      * @return  self
-     */ 
+     */
     public function setVaccination_plan($vaccination_plan)
     {
         $this->vaccination_plan = $vaccination_plan;
@@ -117,7 +117,7 @@ class Pet
 
     /**
      * Get the value of observations
-     */ 
+     */
     public function getObservations()
     {
         return $this->observations;
@@ -127,7 +127,7 @@ class Pet
      * Set the value of observations
      *
      * @return  self
-     */ 
+     */
     public function setObservations($observations)
     {
         $this->observations = $observations;
@@ -137,7 +137,7 @@ class Pet
 
     /**
      * Get the value of video
-     */ 
+     */
     public function getVideo()
     {
         return $this->video;
@@ -147,7 +147,7 @@ class Pet
      * Set the value of video
      *
      * @return  self
-     */ 
+     */
     public function setVideo($video)
     {
         $this->video = $video;
@@ -157,7 +157,7 @@ class Pet
 
     /**
      * Get the value of owner
-     */ 
+     */
     public function getOwner()
     {
         return $this->owner;
@@ -167,7 +167,7 @@ class Pet
      * Set the value of owner
      *
      * @return  self
-     */ 
+     */
     public function setOwner($owner)
     {
         $this->owner = $owner;
@@ -175,44 +175,28 @@ class Pet
         return $this;
     }
 
-    public function __toString()
+    /**
+     * Get the value of petType
+     */
+    public function getPetType()
     {
-        return $this->id . ' - ' . $this->race;
+        return $this->petType;
     }
 
     /**
-     * Get the value of animal
-     */ 
-    public function getAnimal()
-    {
-        return $this->animal;
-    }
-
-    /**
-     * Set the value of animal
+     * Set the value of petType
      *
      * @return  self
-     */ 
-    public function setAnimal($animal)
+     */
+    public function setPetType($petType)
     {
-        $this->animal = $animal;
+        $this->petType = $petType;
 
         return $this;
     }
 
-    public function checkAnimal($animalOwner){
-        return in_array($animalOwner, $this->animal);
-    }
-
-    public function descriptionAnimal(){
-        $description = '';
-        if($this->checkAnimal('Perro')){
-            $description = $description . '[Perro]'; 
-        }
-
-        if($this->checkAnimal('Gato')){
-            $description = $description . '[Gato]'; 
-        }
-        return $description;
+    public function __toString()
+    {
+        return $this->getPetType() . ' - ' . $this->race . ' [' . $this->size . ']';
     }
 }
