@@ -6,7 +6,7 @@ class Pet
 {
     private $id;
     private $image;
-    private $race;
+    private $breed;
     private $size;
     private $vaccination_plan;
     private $observations;
@@ -58,9 +58,9 @@ class Pet
     /**
      * Get the value of race
      */
-    public function getRace()
+    public function getBreed()
     {
-        return $this->race;
+        return $this->breed;
     }
 
     /**
@@ -68,9 +68,9 @@ class Pet
      *
      * @return  self
      */
-    public function setRace($race)
+    public function setBreed($breed)
     {
-        $this->race = $race;
+        $this->breed = $breed;
 
         return $this;
     }
@@ -197,6 +197,6 @@ class Pet
 
     public function __toString()
     {
-        return $this->getPetType() . ' - ' . $this->race . ' [' . $this->size . ']';
+        return $this->getPetType() . ' - ' . $this->breed . ' [' . $this->size . ']';
     }
 }

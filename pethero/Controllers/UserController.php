@@ -25,6 +25,8 @@ class UserController
         $this->ownerDAO = new OwnerDAO();
     }
 
+   
+
     public function ShowLogin()
     {
         require_once(VIEWS_PATH . "auth/login.php");
@@ -39,7 +41,7 @@ class UserController
             $_SESSION['user'] = $user;
 
             if ($user->isOwner()) {
-                header('Location: ../Owner/ShowMyPets');
+                header('Location: ../Owner/ShowPerfil');
             } elseif ($user->isKeeper()) {
                 header('Location: ../Keeper/ShowPerfil');
             } elseif ($user->isAdmin()) {

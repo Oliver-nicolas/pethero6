@@ -76,7 +76,7 @@ CREATE TABLE `payments` (
 
 CREATE TABLE `pets` (
   `id` int NOT NULL,
-  `race` varchar(45) NOT NULL,
+  `breed` varchar(45) NOT NULL,
   `size` varchar(45) NOT NULL,
   `observations` varchar(500) NOT NULL,
   `image` varchar(200) NOT NULL,

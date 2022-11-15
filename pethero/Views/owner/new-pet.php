@@ -23,8 +23,8 @@ require_once(VIEWS_PATH . 'nav.php');
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label for="">Race <strong class="text-danger">*</strong></label>
-                            <input type="text" name="race" class="form-control" required>
+                            <label for="">Breed <strong class="text-danger">*</strong></label>
+                            <input type="text" name="breed" class="form-control" required>
                         </div>
                     </div>
                     <div class="col-lg-6">

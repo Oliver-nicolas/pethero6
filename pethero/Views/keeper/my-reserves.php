@@ -25,7 +25,7 @@ require_once(VIEWS_PATH . 'nav.php');
                 <table class="table mt-3">
                     <thead>
                         <th>Image</th>
-                        <th>Race</th>
+                        <th>Breed</th>
                         <th>Pet Type</th>
                         <th>Size</th>
                         <th>Start Date</th>
@@ -40,7 +40,7 @@ require_once(VIEWS_PATH . 'nav.php');
                         ?>
                             <tr>
                                 <td><img src="<?= FRONT_ROOT . UPLOADS_PATH . $item->getPet()->getImage() ?>" alt="" width="100"></td>
-                                <td><?= $item->getPet()->getRace() ?></td>
+                                <td><?= $item->getPet()->getBreed() ?></td>
                                 <td><?= $item->getPet()->getPetType() ?></td>
                                 <td><?= $item->getPet()->getSize() ?></td>
                                 <td><?= $item->getStartDate() ?></td>
