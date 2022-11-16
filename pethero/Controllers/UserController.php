@@ -60,10 +60,7 @@ class UserController
         require_once(VIEWS_PATH . "auth/register.php");
     }
 
-
-    public function Register($name, $lastName, $address, $username, $password, $userTypeId)
-=======
-    public function Register($name, $lastname, $address, $username, $password, $userTypeId)
+    public function Register($name, $lastname, $address, $email, $username, $password, $userTypeId)
 
     {
         unset($_SESSION['error']);
@@ -81,16 +78,18 @@ class UserController
                 if ($user->getUsertype()->getType() == 'Owner') {
                     $owner = new Owner();
                     $owner->setName($name);
-                    $owner->setLastname($lastName);
+                    $owner->setLastname($lastname);
                     $owner->setAddress($address);
+                    $owner->setEmail($email);
                     $owner->setUser($this->userDAO->GetByUsername($username));
 
                     $this->ownerDAO->Add($owner);
                 } elseif ($user->getUsertype()->getType() == 'Keeper') {
                     $keeper = new Keeper();
                     $keeper->setName($name);
-                    $keeper->setLastname($lastName);
+                    $keeper->setLastname($lastname);
                     $keeper->setAddress($address);
+                    $keeper->setEmail($email);
                     $keeper->setUser($this->userDAO->GetByUsername($username));
 
                     $this->keeperDAO->Add($keeper);

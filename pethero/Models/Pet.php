@@ -5,6 +5,7 @@ namespace Models;
 class Pet
 {
     private $id;
+    private $name;
     private $image;
     private $breed;
     private $size;
@@ -198,5 +199,25 @@ class Pet
     public function __toString()
     {
         return $this->getPetType() . ' - ' . $this->breed . ' [' . $this->size . ']';
+    }
+
+    /**
+     * Get the value of name
+     */ 
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set the value of name
+     *
+     * @return  self
+     */ 
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
     }
 }

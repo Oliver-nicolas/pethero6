@@ -46,6 +46,15 @@ require_once(VIEWS_PATH . 'nav.php');
                 </div>
 
                 <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label for="">Email <strong class="text-danger">*</strong></label>
+                            <input type="email" name="email" value="<?= $keeper->getEmail() ?>" class="form-control" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label for="">Start Date <strong class="text-danger">*</strong></label>
@@ -67,15 +76,6 @@ require_once(VIEWS_PATH . 'nav.php');
                                 }
                                 ?>
                             
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="form-group">
-                            <label for="">Days (Optional)</label>
-                            <input type="text" name="days" value="<?= $keeper->getDays() ?>" class="form-control">
                         </div>
                     </div>
                 </div>

@@ -10,6 +10,7 @@ require_once(VIEWS_PATH . 'nav.php');
                 <table class="table">
                     <thead>
                         <th>Image</th>
+                        <th>Name</th>
                         <th>Breed</th>
                         <th>Pet Type</th>
                         <th>Size</th>
@@ -23,6 +24,7 @@ require_once(VIEWS_PATH . 'nav.php');
                         ?>
                             <tr>
                                 <td><img src="<?= FRONT_ROOT . UPLOADS_PATH . $item->getImage() ?>" alt="" width="100"></td>
+                                <td><?= $item->getName() ?></td>
                                 <td><?= $item->getBreed() ?></td>
                                 <td><?= $item->getPetType() ?></td>
                                 <td><?= $item->getSize() ?></td>

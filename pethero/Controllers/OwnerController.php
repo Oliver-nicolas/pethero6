@@ -37,7 +37,7 @@ class OwnerController
         $owner = $this->ownerDAO->SearchByUserId($this->userLogged->getId());
         require_once(VIEWS_PATH . "owner/perfil-owner.php");
     }
-    
+
     public function ShowMyPets()
     {
         $owner = $this->ownerDAO->SearchByUserId($this->userLogged->getId());
@@ -51,12 +51,13 @@ class OwnerController
         require_once(VIEWS_PATH . "owner/new-pet.php");
     }
 
-    public function AddPet($breed, $size, $observations, $petTypeId, $image, $vaccination_plan, $video)
+    public function AddPet($name, $breed, $size, $observations, $petTypeId, $image, $vaccination_plan, $video)
     {
         try {
 
             $owner = $this->ownerDAO->SearchByUserId($this->userLogged->getId());
             $pet = new Pet();
+            $pet->setName($name);
             $pet->setBreed($breed);
             $pet->setSize($size);
             $pet->setObservations($observations);
@@ -170,5 +171,12 @@ class OwnerController
             $_SESSION['error'] = 'Exception. ' . $th->getMessage();
         }
         $this->ShowNewReserve($keeperId);
+    }
+
+    public function AddPayment($reserve, $amount){
+
+            $payment = new Payment();
+            $payment->setReserve($this->reserveDAO-Search($reserveId));
+            $payment->setAmount($this->KeeperDAO-Search($keeperId));
     }
 }

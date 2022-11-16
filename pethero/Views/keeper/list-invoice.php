@@ -4,7 +4,7 @@ require_once(VIEWS_PATH . 'nav.php');
 <main class="py-5">
     <section id="listado" class="mb-5">
         <div class="container-fluid">
-            <h2 class="mb-4">My Reserves</h2>
+            <h2 class="mb-4">My Invoices</h2>
 
             <div class="bg-light-alpha p-5">
 
@@ -25,7 +25,6 @@ require_once(VIEWS_PATH . 'nav.php');
                 <table class="table mt-3">
                     <thead>
                         <th>Image</th>
-                        <th>Name</th>
                         <th>Breed</th>
                         <th>Pet Type</th>
                         <th>Size</th>
@@ -41,7 +40,6 @@ require_once(VIEWS_PATH . 'nav.php');
                         ?>
                             <tr>
                                 <td><img src="<?= FRONT_ROOT . UPLOADS_PATH . $item->getPet()->getImage() ?>" alt="" width="100"></td>
-                                <td><?= $item->getPet()->getName() ?></td>
                                 <td><?= $item->getPet()->getBreed() ?></td>
                                 <td><?= $item->getPet()->getPetType() ?></td>
                                 <td><?= $item->getPet()->getSize() ?></td>

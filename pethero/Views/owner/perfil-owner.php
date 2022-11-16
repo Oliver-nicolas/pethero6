@@ -45,6 +45,15 @@ require_once(VIEWS_PATH . 'nav.php');
                     </div>
                 </div>
 
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label for="">Email <strong class="text-danger">*</strong></label>
+                            <input type="email" name="email" value="<?= $owner->getEmail() ?>" class="form-control" required>
+                        </div>
+                    </div>
+                </div>
+
                 <?php
                 /*
                                $date1=date_create($keeper->getStartDate());
