@@ -17,6 +17,9 @@
                          <a class="nav-link" href="<?= FRONT_ROOT ?>Keeper/ShowPerfil">@<?= $user->getUsername() ?></a>
                     </li>
                     <li class="nav-item">
+                         <a class="nav-link" href="<?= FRONT_ROOT ?>Keeper/ShowPerfil">Home</a>
+                    </li>
+                    <li class="nav-item">
                          <a class="nav-link" href="<?= FRONT_ROOT ?>Keeper/ShowMyReserves">My Reserves</a>
                     </li>
                <?php
@@ -26,19 +29,22 @@
                          <a class="nav-link" href="#">@<?= $user->getUsername() ?></a>
                     </li>
                     <li class="nav-item">
+                         <a class="nav-link" href="<?= FRONT_ROOT ?>Owner/ShowPerfil">Home</a>
+                    </li>
+                    <li class="nav-item">
                          <a class="nav-link" href="<?= FRONT_ROOT ?>Owner/ShowMyPets">My Pets</a>
                     </li>
                     <li class="nav-item">
                          <a class="nav-link" href="<?= FRONT_ROOT ?>Owner/ShowNewPet">New Pet</a>
                     </li>
                     <li class="nav-item">
-                         <a class="nav-link" href="<?= FRONT_ROOT ?>Owner/ShowListKeepers">List Keepers</a>
+                         <a class="nav-link" href="<?= FRONT_ROOT ?>Owner/ShowListKeepers">Booking</a>
                     </li>
                <?php
                }
                ?>
-               <li class="nav-item">
-                    <a class="nav-link" href="<?= FRONT_ROOT ?>User/Logout">Cerrar Sesión</a>
+               <li class="btn-outline-danger">
+                    <a class="nav-link" href="<?= FRONT_ROOT ?>User/Logout">Close Session</a>
                </li>
           <?php
           } else {

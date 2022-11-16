@@ -39,6 +39,15 @@ require_once(VIEWS_PATH . 'nav.php');
                 </div>
 
                 <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label for="">Email <strong class="text-danger">*</strong></label>
+                            <input type="email" name="email" value="" class="form-control" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label for="">Username <strong class="text-danger">*</strong></label>

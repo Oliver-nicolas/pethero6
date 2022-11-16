@@ -50,7 +50,8 @@ require_once(VIEWS_PATH . 'nav.php');
                                 <td><?= $item->getPrice() ?></td>
                                 <td><?= $item->getStartDate() ?></td>
                                 <td><?= $item->getEndDate() ?></td>
-                                <td><?= empty($item->getDays()) ? '-' : $item->getDays() ?></td>
+                                <td><?= $item->getDays() ?></td>
+                               
                                 <td class="text-right">
                                     <a class="btn btn-warning" href="<?= FRONT_ROOT ?>Owner/ShowNewReserve/<?= $item->getId() ?>">Reservar</a>
                                 </td>

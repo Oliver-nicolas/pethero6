@@ -41,11 +41,12 @@ class KeeperDAO implements IKeeperDAO
     {
         try {
 
-            $query = "INSERT INTO " . $this->tableName . " (id, name, lastname, address, sizePet, price, startDate, endDate, days, userId) VALUES (:id, :name, :lastname, :address, :sizePet, :price, :startDate, :endDate, :days, :userId);";
+            $query = "INSERT INTO " . $this->tableName . " (id, name, lastname, address, email, sizePet, price, startDate, endDate, days, userId) VALUES (:id, :name, :lastname, :address, :email, :sizePet, :price, :startDate, :endDate, :days, :userId);";
             $parameters["id"] = 0;
             $parameters["name"] = $keeper->getName();
             $parameters["lastname"] = $keeper->getLastname();
             $parameters["address"] = $keeper->getAddress();
+            $parameters["email"] = $keeper->getEmail();
             $parameters["sizePet"] = $this->ArrayToString($keeper->getSizepet());
             $parameters["price"] = $keeper->getPrice();
             $parameters["startDate"] = $keeper->getStartdate();
@@ -68,11 +69,12 @@ class KeeperDAO implements IKeeperDAO
     {
         try {
 
-            $query = "UPDATE " . $this->tableName . " SET name=:name, lastname=:lastname, address=:address, sizePet=:sizePet, price=:price, startDate=:startDate, endDate=:endDate, days=:days WHERE id=:id";
+            $query = "UPDATE " . $this->tableName . " SET name=:name, lastname=:lastname, address=:address, email=:email, sizePet=:sizePet, price=:price, startDate=:startDate, endDate=:endDate, days=:days WHERE id=:id";
             $parameters["id"] = $keeper->getId();
             $parameters["name"] = $keeper->getName();
             $parameters["lastname"] = $keeper->getLastname();
             $parameters["address"] = $keeper->getAddress();
+            $parameters["email"] = $keeper->getEmail();
             $parameters["sizePet"] = $this->ArrayToString($keeper->getSizepet());
             $parameters["price"] = $keeper->getPrice();
             $parameters["startDate"] = $keeper->getStartdate();
@@ -106,6 +108,7 @@ class KeeperDAO implements IKeeperDAO
                 $keeper->setName($row["name"]);
                 $keeper->setLastname($row["lastname"]);
                 $keeper->setAddress($row["address"]);
+                $keeper->setEmail($row["email"]);
                 $keeper->setSizePet($this->StringToArray($row["sizePet"]));
                 $keeper->setPrice($row["price"]);
                 $keeper->setStartDate($row["startDate"]);
@@ -138,6 +141,7 @@ class KeeperDAO implements IKeeperDAO
                 $keeper->setName($row["name"]);
                 $keeper->setLastname($row["lastname"]);
                 $keeper->setAddress($row["address"]);
+                $keeper->setEmail($row["email"]);
                 $keeper->setSizePet($this->StringToArray($row["sizePet"]));
                 $keeper->setPrice($row["price"]);
                 $keeper->setStartDate($row["startDate"]);
@@ -171,6 +175,7 @@ class KeeperDAO implements IKeeperDAO
                 $keeper->setName($row["name"]);
                 $keeper->setLastname($row["lastname"]);
                 $keeper->setAddress($row["address"]);
+                $keeper->setEmail($row["email"]);
                 $keeper->setSizePet($this->StringToArray($row["sizePet"]));
                 $keeper->setPrice($row["price"]);
                 $keeper->setStartDate($row["startDate"]);
@@ -215,6 +220,7 @@ class KeeperDAO implements IKeeperDAO
                 $keeper->setName($row["name"]);
                 $keeper->setLastname($row["lastname"]);
                 $keeper->setAddress($row["address"]);
+                $keeper->setEmail($row["email"]);
                 $keeper->setSizePet($this->StringToArray($row["sizePet"]));
                 $keeper->setPrice($row["price"]);
                 $keeper->setStartDate($row["startDate"]);

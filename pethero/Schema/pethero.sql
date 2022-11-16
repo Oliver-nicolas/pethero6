@@ -34,6 +34,7 @@ CREATE TABLE `keepers` (
   `name` varchar(45) NOT NULL,
   `lastname` varchar(45) NOT NULL,
   `address` varchar(45) NOT NULL,
+  `email` varchar(45) NOT NULL,
   `sizePet` varchar(100) DEFAULT NULL,
   `price` double DEFAULT NULL,
   `startDate` date DEFAULT NULL,
@@ -53,6 +54,7 @@ CREATE TABLE `owners` (
   `name` varchar(45) NOT NULL,
   `lastname` varchar(45) NOT NULL,
   `address` varchar(45) NOT NULL,
+  `email` varchar(45) NOT NULL,
   `userId` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
@@ -76,7 +78,8 @@ CREATE TABLE `payments` (
 
 CREATE TABLE `pets` (
   `id` int NOT NULL,
-  `race` varchar(45) NOT NULL,
+  `name` varchar(45) NOT NULL,
+  `breed` varchar(45) NOT NULL,
   `size` varchar(45) NOT NULL,
   `observations` varchar(500) NOT NULL,
   `image` varchar(200) NOT NULL,
