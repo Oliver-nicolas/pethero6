@@ -5,9 +5,8 @@ namespace Models;
 class Pet
 {
     private $id;
-    private $name;
     private $image;
-    private $breed;
+    private $race;
     private $size;
     private $vaccination_plan;
     private $observations;
@@ -59,9 +58,9 @@ class Pet
     /**
      * Get the value of race
      */
-    public function getBreed()
+    public function getRace()
     {
-        return $this->breed;
+        return $this->race;
     }
 
     /**
@@ -69,9 +68,9 @@ class Pet
      *
      * @return  self
      */
-    public function setBreed($breed)
+    public function setRace($race)
     {
-        $this->breed = $breed;
+        $this->race = $race;
 
         return $this;
     }
@@ -198,26 +197,6 @@ class Pet
 
     public function __toString()
     {
-        return $this->getPetType() . ' - ' . $this->breed . ' [' . $this->size . ']';
-    }
-
-    /**
-     * Get the value of name
-     */ 
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Set the value of name
-     *
-     * @return  self
-     */ 
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
+        return $this->getPetType() . ' - ' . $this->race . ' [' . $this->size . ']';
     }
 }
