@@ -78,9 +78,14 @@ require_once(VIEWS_PATH . 'nav.php');
                             
                         </div>
                     </div>
-                </div>
-
+                </div>    
                 <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="">Days <strong class="text-danger">*</strong></label>
+                                <input type="number" name="days" min="0" value="<?= $keeper->getDays() ?>" class="form-control" required>
+                            </div>
+                        </div>                
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label for="">Price <strong class="text-danger">*</strong></label>

@@ -5,6 +5,8 @@ namespace DAO;
 use DAO\IReserveDAO as IReserveDAO;
 use DAO\KeeperDAO as KeeperDAO;
 use DAO\PetDAO as PetDAO;
+use DAO\OwnerDAO as OwnerDAO;
+use Models\Mailer as Mailer;
 use Models\Reserve as Reserve;
 
 use Exception;
@@ -16,11 +18,13 @@ class ReserveDAO implements IReserveDAO
 
     private $keeperDAO;
     private $petDAO;
+    private $ownerDAO;
 
     public function __construct()
     {
         $this->keeperDAO = new keeperDAO();
         $this->petDAO = new PetDAO();
+        $this->ownerDAO = new OwnerDAO();
     }
 
     public function Add(Reserve $reserve)
@@ -204,6 +208,21 @@ class ReserveDAO implements IReserveDAO
             return $reserveList;
         } catch (Exception $ex) {
             throw $ex;
+        }
+    }
+
+    public function generateEmail($reserve){
+
+
+        $ownerList =  $this->ownerDAO->GetAll();
+
+        foreach($ownerList as $aux){
+
+            if($aux->get){
+                
+                $mail = new Mailer();
+                $mail->sendMail($reserve); 
+            }
         }
     }
 }

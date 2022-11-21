@@ -63,7 +63,7 @@ require_once(VIEWS_PATH . 'nav.php');
                                 }
                                 */
                                 ?>
-                <button type="submit" class="btn btn-dark ml-auto d-block">Update</button>
+               
 
             </form>
 
