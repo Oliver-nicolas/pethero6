@@ -75,12 +75,19 @@ require_once(VIEWS_PATH . 'nav.php');
                                 <?php
                                 }
                                 ?>
-                            
                         </div>
                     </div>
-                </div>
-
+                </div>    
                 <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="">Days <strong class="text-danger"></strong></label>
+                                <!-- diferencia entre dias-->
+                                <input type="number" name="days" min="0" value="<?= $keeper->getDays() ?>" class="form-control">
+                            </div>
+                        </div>                
+
+                        
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label for="">Price <strong class="text-danger">*</strong></label>

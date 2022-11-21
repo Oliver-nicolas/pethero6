@@ -40,6 +40,7 @@ CREATE TABLE `keepers` (
   `startDate` date DEFAULT NULL,
   `endDate` date DEFAULT NULL,
   `days` varchar(100) DEFAULT NULL,
+  `score` int NOT NULL,
   `userId` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 

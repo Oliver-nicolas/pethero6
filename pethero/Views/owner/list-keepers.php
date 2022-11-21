@@ -36,6 +36,7 @@ require_once(VIEWS_PATH . 'nav.php');
                         <th>Start Date</th>
                         <th>End Date</th>
                         <th>Days</th>
+                        <th>Score</th>
                         <th></th>
                     </thead>
                     <tbody>
@@ -51,9 +52,10 @@ require_once(VIEWS_PATH . 'nav.php');
                                 <td><?= $item->getStartDate() ?></td>
                                 <td><?= $item->getEndDate() ?></td>
                                 <td><?= $item->getDays() ?></td>
-                               
+                              
                                 <td class="text-right">
-                                    <a class="btn btn-warning" href="<?= FRONT_ROOT ?>Owner/ShowNewReserve/<?= $item->getId() ?>">Reservar</a>
+                                    <a class="btn btn-success" href="<?= FRONT_ROOT ?>Owner/AddLike/<?= $item->getId() ?>">Like</a>
+                                    <a class="btn btn-warning" href="<?= FRONT_ROOT ?>Owner/ShowNewReserve/<?= $item->getId() ?>">Reserve</a>
                                 </td>
                             </tr>
                         <?php

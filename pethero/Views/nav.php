@@ -44,13 +44,13 @@
                }
                ?>
                <li class="btn-outline-danger">
-                    <a class="nav-link" href="<?= FRONT_ROOT ?>User/Logout">Close Session</a>
+                    <a class="nav-link" href="<?= FRONT_ROOT ?>User/Logout">Log Out</a>
                </li>
           <?php
           } else {
           ?>
                <li class="nav-item">
-                    <a class="nav-link" href="<?= FRONT_ROOT ?>User/ShowLogin">Login</a>
+                    <a class="nav-link" href="<?= FRONT_ROOT ?>User/ShowLogin">Log In</a>
                </li>
                <li class="nav-item">
                     <a class="nav-link" href="<?= FRONT_ROOT ?>User/ShowRegister">Register</a>

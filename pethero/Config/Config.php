@@ -6,6 +6,7 @@ define("ROOT", dirname(__DIR__) . "/");
 define("FRONT_ROOT", "/TPS/pethero6-main/pethero6/pethero/");
 define("VIEWS_PATH", "Views/");
 define("UPLOADS_PATH", "uploads/");
+define("MAILER_PATH", "Phpmailer/phpmailer/");
 define("CSS_PATH", FRONT_ROOT.VIEWS_PATH . "css/");
 define("JS_PATH", FRONT_ROOT.VIEWS_PATH . "js/");
 
