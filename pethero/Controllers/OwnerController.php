@@ -142,6 +142,12 @@ class OwnerController
         require_once(VIEWS_PATH . "owner/new-reserve.php");
     }
 
+    public function AddLike($keeperId){
+        $keeper = $this->keeperDAO->SearchByUserId($keeperId);
+        $keeper->setScore(+1);
+       
+    }
+
     public function AddReserve($keeperId, $petId, $startDate, $endDate)
     {
         try {

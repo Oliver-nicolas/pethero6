@@ -44,11 +44,6 @@ class KeeperController
                 array_push($sizePet, 'Big');
             }
 
-            /*$fecha1 = new dateTime("2022-11-17");
-            $fecha2 = new dateTime("2022-11-20");
-
-            $dateDif = $fecha1 - $fecha2;*/
-
             $keeper = $this->keeperDAO->SearchByUserId($this->userLogged->getId());
             $keeper->setName($name);
             $keeper->setLastname($lastname);
@@ -124,6 +119,8 @@ class KeeperController
         }
         $this->ShowMyReserves();
     }
+
+    
 }
 
 ?>

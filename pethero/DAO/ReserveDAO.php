@@ -218,7 +218,7 @@ class ReserveDAO implements IReserveDAO
 
         foreach($ownerList as $aux){
 
-            if($aux->get){
+            if($aux->getId() == $reserve->getPet()->getOwner()->getId()){
                 
                 $mail = new Mailer();
                 $mail->sendMail($reserve); 

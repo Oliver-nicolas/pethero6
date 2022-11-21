@@ -41,7 +41,7 @@ class KeeperDAO implements IKeeperDAO
     {
         try {
 
-            $query = "INSERT INTO " . $this->tableName . " (id, name, lastname, address, email, sizePet, price, startDate, endDate, days, userId) VALUES (:id, :name, :lastname, :address, :email, :sizePet, :price, :startDate, :endDate, :days, :userId);";
+            $query = "INSERT INTO " . $this->tableName . " (id, name, lastname, address, email, sizePet, price, startDate, endDate, days, score, userId) VALUES (:id, :name, :lastname, :address, :email, :sizePet, :price, :startDate, :endDate, :days, :score, :userId);";
             $parameters["id"] = 0;
             $parameters["name"] = $keeper->getName();
             $parameters["lastname"] = $keeper->getLastname();
@@ -52,6 +52,7 @@ class KeeperDAO implements IKeeperDAO
             $parameters["startDate"] = $keeper->getStartdate();
             $parameters["endDate"] = $keeper->getEnddate();
             $parameters["days"] = $keeper->getDays();
+            $parameters["score"] = 0;
             $parameters["userId"] = $keeper->getUser()->getId();
 
             $this->connection = Connection::GetInstance();
@@ -69,7 +70,7 @@ class KeeperDAO implements IKeeperDAO
     {
         try {
 
-            $query = "UPDATE " . $this->tableName . " SET name=:name, lastname=:lastname, address=:address, email=:email, sizePet=:sizePet, price=:price, startDate=:startDate, endDate=:endDate, days=:days WHERE id=:id";
+            $query = "UPDATE " . $this->tableName . " SET name=:name, lastname=:lastname, address=:address, email=:email, sizePet=:sizePet, price=:price, startDate=:startDate, endDate=:endDate, days=:days, WHERE id=:id";
             $parameters["id"] = $keeper->getId();
             $parameters["name"] = $keeper->getName();
             $parameters["lastname"] = $keeper->getLastname();
@@ -80,6 +81,7 @@ class KeeperDAO implements IKeeperDAO
             $parameters["startDate"] = $keeper->getStartdate();
             $parameters["endDate"] = $keeper->getEnddate();
             $parameters["days"] = $keeper->getDays();
+            $parameters["score"] = $keeper->getScore();
 
             $this->connection = Connection::GetInstance();
 
@@ -114,6 +116,7 @@ class KeeperDAO implements IKeeperDAO
                 $keeper->setStartDate($row["startDate"]);
                 $keeper->setEndDate($row["endDate"]);
                 $keeper->setDays($row["days"]);
+                $keeper->setScore($row["score"]);
                 $keeper->setUser($this->userDAO->Search($row["userId"]));
 
                 return $keeper;
@@ -147,6 +150,7 @@ class KeeperDAO implements IKeeperDAO
                 $keeper->setStartDate($row["startDate"]);
                 $keeper->setEndDate($row["endDate"]);
                 $keeper->setDays($row["days"]);
+                $keeper->setScore($row["score"]);
                 $keeper->setUser($this->userDAO->Search($row["userId"]));
 
                 return $keeper;
@@ -181,6 +185,7 @@ class KeeperDAO implements IKeeperDAO
                 $keeper->setStartDate($row["startDate"]);
                 $keeper->setEndDate($row["endDate"]);
                 $keeper->setDays($row["days"]);
+                $keeper->setScore($row["score"]);
                 $keeper->setUser($this->userDAO->Search($row["userId"]));
 
                 array_push($keeperList, $keeper);
@@ -226,6 +231,7 @@ class KeeperDAO implements IKeeperDAO
                 $keeper->setStartDate($row["startDate"]);
                 $keeper->setEndDate($row["endDate"]);
                 $keeper->setDays($row["days"]);
+                $keeper->setScore($row["score"]);
                 $keeper->setUser($this->userDAO->Search($row["userId"]));
 
                 array_push($keeperList, $keeper);
