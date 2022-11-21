@@ -25,8 +25,6 @@ class UserController
         $this->ownerDAO = new OwnerDAO();
     }
 
-   
-
     public function ShowLogin()
     {
         require_once(VIEWS_PATH . "auth/login.php");
@@ -41,7 +39,7 @@ class UserController
             $_SESSION['user'] = $user;
 
             if ($user->isOwner()) {
-                header('Location: ../Owner/ShowPerfil');
+                header('Location: ../Owner/ShowMyPets');
             } elseif ($user->isKeeper()) {
                 header('Location: ../Keeper/ShowPerfil');
             } elseif ($user->isAdmin()) {
@@ -60,7 +58,10 @@ class UserController
         require_once(VIEWS_PATH . "auth/register.php");
     }
 
-    public function Register($name, $lastname, $address, $email, $username, $password, $userTypeId)
+
+    public function Register($name, $lastName, $address, $username, $password, $userTypeId)
+=======
+    public function Register($name, $lastname, $address, $username, $password, $userTypeId)
 
     {
         unset($_SESSION['error']);
@@ -78,18 +79,16 @@ class UserController
                 if ($user->getUsertype()->getType() == 'Owner') {
                     $owner = new Owner();
                     $owner->setName($name);
-                    $owner->setLastname($lastname);
+                    $owner->setLastname($lastName);
                     $owner->setAddress($address);
-                    $owner->setEmail($email);
                     $owner->setUser($this->userDAO->GetByUsername($username));
 
                     $this->ownerDAO->Add($owner);
                 } elseif ($user->getUsertype()->getType() == 'Keeper') {
                     $keeper = new Keeper();
                     $keeper->setName($name);
-                    $keeper->setLastname($lastname);
+                    $keeper->setLastname($lastName);
                     $keeper->setAddress($address);
-                    $keeper->setEmail($email);
                     $keeper->setUser($this->userDAO->GetByUsername($username));
 
                     $this->keeperDAO->Add($keeper);

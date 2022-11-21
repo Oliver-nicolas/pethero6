@@ -8,7 +8,6 @@ class Keeper
     private $name;
     private $lastname;
     private $address;
-    private $email;
     private $sizePet = array();
     private $price;
     private $startDate;
@@ -239,25 +238,5 @@ class Keeper
     public function __toString()
     {
         return $this->name . ' ' . $this->lastname;
-    }
-
-    /**
-     * Get the value of email
-     */ 
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * Set the value of email
-     *
-     * @return  self
-     */ 
-    public function setEmail($email)
-    {
-        $this->email = $email;
-
-        return $this;
     }
 }
