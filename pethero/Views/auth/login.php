@@ -27,7 +27,7 @@ require_once(VIEWS_PATH . 'nav.php');
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-dark ml-auto d-block">Log In</button>
+                <button type="submit" class="btn btn-dark ml-auto d-block">Login</button>
 
                 <a href="<?= FRONT_ROOT ?>User/ShowRegister">Create a account</a>
 
