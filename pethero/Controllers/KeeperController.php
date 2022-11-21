@@ -28,7 +28,7 @@ class KeeperController
     }
 
 
-    public function Update($name, $lastname, $address, $email, $startDate, $endDate, $days, $price)
+    public function Update($name, $lastname, $address, $email, $startDate, $endDate, $price)
 
     {
         try {
@@ -52,7 +52,7 @@ class KeeperController
             $keeper->setPrice($price);
             $keeper->setStartdate($startDate);
             $keeper->setEnddate($endDate);
-            $keeper->setDays($days);
+            $keeper->setDays($startDate->diff($endDate));
             $keeper->setSizePet($sizePet);
 
             if ($this->keeperDAO->Update($keeper)) {
@@ -88,12 +88,7 @@ class KeeperController
 
             if ($reserve->getState() == 'Waiting' && $this->reserveDAO->Accept($reserve)) {
                 $_SESSION['success'] = 'Reserve accepted';
-                if(!empty($reserve)){
-                    $message = "Succesful email sent to " . "<br>" . "Cupon: " . $reserve->getCupon_generated();
-                          
-                    $this->reserveDAO->generateEmail($reserve);//  ENVIO DE FACTURA
-                }
-                
+                /*  ENVIO DE FACTURA*/
             } else {
                 $_SESSION['error'] = 'Reserve could not be accepted';
             }
@@ -119,8 +114,4 @@ class KeeperController
         }
         $this->ShowMyReserves();
     }
-
-    
 }
-
-?>

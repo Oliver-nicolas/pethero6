@@ -15,7 +15,6 @@ class Keeper
     private $endDate;
     private $days;
     private $user;
-    private $score = array();
 
     /**
      * Get the value of id
@@ -258,26 +257,6 @@ class Keeper
     public function setEmail($email)
     {
         $this->email = $email;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of score
-     */ 
-    public function getScore()
-    {
-        return $this->score;
-    }
-
-    /**
-     * Set the value of score
-     *
-     * @return  self
-     */ 
-    public function setScore($score)
-    {
-        $this->score = $score;
 
         return $this;
     }
