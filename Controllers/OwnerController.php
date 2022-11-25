@@ -60,13 +60,13 @@ class OwnerController
         require_once(VIEWS_PATH . "owner/new-pet.php");
     }
 
-    public function AddPet($race, $size, $observations, $petTypeId, $image, $vaccination_plan, $video)
+    public function AddPet($breed, $size, $observations, $petTypeId, $image, $vaccination_plan, $video)
     {
         try {
 
             $owner = $this->ownerDAO->SearchByUserId($this->userLogged->getId());
             $pet = new Pet();
-            $pet->setRace($race);
+            $pet->setBreed($breed);
             $pet->setSize($size);
             $pet->setObservations($observations);
             $pet->setPetType($this->petTypeDAO->Search($petTypeId));

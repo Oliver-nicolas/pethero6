@@ -106,7 +106,6 @@ class ChatDAO implements IChatDAO
             $parameters["ownerId"] = $ownerId;
 
             $this->connection = Connection::GetInstance();
-            $this->connection->Execute("set @@global.sql_mode='';");
 
             $resultSet = $this->connection->Execute($query, $parameters);
 
@@ -135,7 +134,6 @@ class ChatDAO implements IChatDAO
             $parameters["keeperId"] = $keeperId;
 
             $this->connection = Connection::GetInstance();
-            $this->connection->Execute("set @@global.sql_mode='';");
 
             $resultSet = $this->connection->Execute($query, $parameters);
 

@@ -52,7 +52,7 @@ require_once(VIEWS_PATH . 'nav.php');
                                 <td><?= $item->getEndDate() ?></td>
                                 <td><?= empty($item->getDays()) ? '-' : $item->getDays() ?></td>
                                 <td class="text-right">
-                                    <a class="btn btn-warning" href="<?= FRONT_ROOT ?>Owner/ShowNewReserve/<?= $item->getId() ?>">Reservar</a>
+                                    <a class="btn btn-warning" href="<?= FRONT_ROOT ?>Owner/ShowNewReserve/<?= $item->getId() ?>">Reserve</a>
                                 </td>
                             </tr>
                         <?php

@@ -134,7 +134,7 @@ class Reserve
 
     /**
      * Get the value of state
-     */ 
+     */
     public function getState()
     {
         return $this->state;
@@ -144,11 +144,16 @@ class Reserve
      * Set the value of state
      *
      * @return  self
-     */ 
+     */
     public function setState($state)
     {
         $this->state = $state;
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->id . ". " . $this->getPet() . " [ " . $this->startDate . " - " . $this->endDate . " ] - " . $this->getPet()->getOwner();
     }
 }
