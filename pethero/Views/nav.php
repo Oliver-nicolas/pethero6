@@ -12,12 +12,18 @@
           if ($user != null) {
                if ($user->isAdmin()) {
                } elseif ($user->isKeeper()) {
-               ?>
+          ?>
+                    <li class="nav-item">
+                         <a class="nav-link" href="<?= FRONT_ROOT ?>Keeper/ShowIndex">Home</a>
+                    </li>
                     <li class="nav-item">
                          <a class="nav-link" href="<?= FRONT_ROOT ?>Keeper/ShowPerfil">@<?= $user->getUsername() ?></a>
                     </li>
                     <li class="nav-item">
                          <a class="nav-link" href="<?= FRONT_ROOT ?>Keeper/ShowMyReserves">My Reserves</a>
+                    </li>
+                    <li class="nav-item">
+                         <a class="nav-link" href="<?= FRONT_ROOT ?>Keeper/ShowMyChats">My Chats</a>
                     </li>
                <?php
                } elseif ($user->isOwner()) {
@@ -33,6 +39,9 @@
                     </li>
                     <li class="nav-item">
                          <a class="nav-link" href="<?= FRONT_ROOT ?>Owner/ShowListKeepers">List Keepers</a>
+                    </li>
+                    <li class="nav-item">
+                         <a class="nav-link" href="<?= FRONT_ROOT ?>Owner/ShowMyChats">My Chats</a>
                     </li>
                <?php
                }

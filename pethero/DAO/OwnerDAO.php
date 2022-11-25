@@ -25,11 +25,12 @@ class OwnerDAO implements IOwnerDAO
     {
         try {
 
-            $query = "INSERT INTO " . $this->tableName . " (id, name, lastname, address, userId) VALUES (:id, :name, :lastname, :address, :userId);";
+            $query = "INSERT INTO " . $this->tableName . " (id, name, lastname, address, email, userId) VALUES (:id, :name, :lastname, :address, :email, :userId);";
             $parameters["id"] = 0;
             $parameters["name"] = $owner->getName();
             $parameters["lastname"] = $owner->getLastname();
             $parameters["address"] = $owner->getAddress();
+            $parameters["email"] = $owner->getEmail();
             $parameters["userId"] = $owner->getUser()->getId();
 
             $this->connection = Connection::GetInstance();
@@ -59,6 +60,7 @@ class OwnerDAO implements IOwnerDAO
                 $owner->setName($row["name"]);
                 $owner->setLastname($row["lastname"]);
                 $owner->setAddress($row["address"]);
+                $owner->setEmail($row["email"]);
                 $owner->setUser($this->userDAO->Search($row["userId"]));
 
                 return $owner;
@@ -86,6 +88,7 @@ class OwnerDAO implements IOwnerDAO
                 $owner->setName($row["name"]);
                 $owner->setLastname($row["lastname"]);
                 $owner->setAddress($row["address"]);
+                $owner->setEmail($row["email"]);
                 $owner->setUser($this->userDAO->Search($row["userId"]));
 
                 return $owner;
@@ -114,6 +117,36 @@ class OwnerDAO implements IOwnerDAO
                 $owner->setName($row["name"]);
                 $owner->setLastname($row["lastname"]);
                 $owner->setAddress($row["address"]);
+                $owner->setEmail($row["email"]);
+                $owner->setUser($this->userDAO->Search($row["userId"]));
+
+                array_push($ownerList, $owner);
+            }
+
+            return $ownerList;
+        } catch (Exception $ex) {
+            throw $ex;
+        }
+    }
+
+    public function ListByReserveWithKeeper($keeperId)
+    {
+        try {
+            $ownerList = array();
+
+            $query = "SELECT o.* FROM " . $this->tableName . " ";
+
+            $this->connection = Connection::GetInstance();
+
+            $resultSet = $this->connection->Execute($query);
+
+            foreach ($resultSet as $row) {
+                $owner = new Owner();
+                $owner->setId($row["id"]);
+                $owner->setName($row["name"]);
+                $owner->setLastname($row["lastname"]);
+                $owner->setAddress($row["address"]);
+                $owner->setEmail($row["email"]);
                 $owner->setUser($this->userDAO->Search($row["userId"]));
 
                 array_push($ownerList, $owner);

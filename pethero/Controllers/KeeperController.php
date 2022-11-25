@@ -4,11 +4,18 @@ namespace Controllers;
 
 use DAO\KeeperDAO as KeeperDAO;
 use DAO\ReserveDAO as ReserveDAO;
+use DAO\ChatDAO as ChatDAO;
+use DAO\MessageDAO as MessageDAO;
+
+use Models\Chat as Chat;
+use Models\Message as Message;
 
 class KeeperController
 {
     private $keeperDAO;
     private $reserveDAO;
+    private $chatDAO;
+    private $messageDAO;
     private $userLogged;
 
     public function __construct()
@@ -18,7 +25,16 @@ class KeeperController
 
         $this->keeperDAO = new KeeperDAO();
         $this->reserveDAO = new ReserveDAO();
+        $this->chatDAO = new ChatDAO();
+        $this->messageDAO = new MessageDAO();
+
         $this->userLogged = $_SESSION['user'];
+    }
+
+    public function ShowIndex()
+    {
+        $keeper = $this->keeperDAO->SearchByUserId($this->userLogged->getId());
+        require_once(VIEWS_PATH . "keeper/index.php");
     }
 
     public function ShowPerfil()
@@ -27,11 +43,7 @@ class KeeperController
         require_once(VIEWS_PATH . "keeper/perfil.php");
     }
 
-
-    public function Update($name, $lastName, $address, $startDate, $endDate, $days, $price)
-=======
-    public function Update($name, $lastname, $address, $startDate, $endDate, $days, $price)
-
+    public function Update($name, $lastName, $address, $email, $startDate, $endDate, $days, $price)
     {
         try {
 
@@ -50,6 +62,7 @@ class KeeperController
             $keeper->setName($name);
             $keeper->setLastname($lastName);
             $keeper->setAddress($address);
+            $keeper->setEmail($email);
             $keeper->setPrice($price);
             $keeper->setStartdate($startDate);
             $keeper->setEnddate($endDate);
@@ -113,5 +126,24 @@ class KeeperController
             $_SESSION['error'] = 'Exception. ' . $th->getMessage();
         }
         $this->ShowMyReserves();
+    }
+
+    public function ShowMyChats($chatId = null)
+    {
+        $keeper = $this->keeperDAO->SearchByUserId($this->userLogged->getId());
+        $chats = $this->chatDAO->SearchByKeeper($keeper->getId());
+        $keepers = $this->keeperDAO->GetAll();
+
+        $messages = [];
+
+        if (count($chats) > 0) {
+            if($chatId == null){
+                $chatId = $chats[0]->getId();
+            }
+            
+            $messages = $this->messageDAO->SearchByChat($chatId);
+        }
+
+        require_once(VIEWS_PATH . "keeper/my-chats.php");
     }
 }
