@@ -38,7 +38,6 @@ class UserDAO implements IUserDAO
         } catch (Exception $ex) {
             throw $ex;
         }
-        return false;
     }
 
     public function GetAll()

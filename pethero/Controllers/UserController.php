@@ -41,7 +41,7 @@ class UserController
             if ($user->isOwner()) {
                 header('Location: ../Owner/ShowMyPets');
             } elseif ($user->isKeeper()) {
-                header('Location: ../Keeper/ShowPerfil');
+                header('Location: ../Keeper/ShowIndex');
             } elseif ($user->isAdmin()) {
                 header('Location: ../Admin/');
             }
@@ -58,11 +58,7 @@ class UserController
         require_once(VIEWS_PATH . "auth/register.php");
     }
 
-
-    public function Register($name, $lastName, $address, $username, $password, $userTypeId)
-=======
-    public function Register($name, $lastname, $address, $username, $password, $userTypeId)
-
+    public function Register($name, $lastName, $address, $email, $username, $password, $userTypeId)
     {
         unset($_SESSION['error']);
         unset($_SESSION['success']);
@@ -81,6 +77,7 @@ class UserController
                     $owner->setName($name);
                     $owner->setLastname($lastName);
                     $owner->setAddress($address);
+                    $owner->setEmail($email);
                     $owner->setUser($this->userDAO->GetByUsername($username));
 
                     $this->ownerDAO->Add($owner);
@@ -89,6 +86,7 @@ class UserController
                     $keeper->setName($name);
                     $keeper->setLastname($lastName);
                     $keeper->setAddress($address);
+                    $keeper->setEmail($email);
                     $keeper->setUser($this->userDAO->GetByUsername($username));
 
                     $this->keeperDAO->Add($keeper);

@@ -8,6 +8,7 @@ class Owner
     private $name;
     private $lastname;
     private $address;
+    private $email;
     private $user;
 
     /**
@@ -108,6 +109,26 @@ class Owner
     public function setUser($user)
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of email
+     */ 
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set the value of email
+     *
+     * @return  self
+     */ 
+    public function setEmail($email)
+    {
+        $this->email = $email;
 
         return $this;
     }

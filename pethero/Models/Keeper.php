@@ -7,6 +7,7 @@ class Keeper
     private $id;
     private $name;
     private $lastname;
+    private $email;
     private $address;
     private $sizePet = array();
     private $price;
@@ -233,6 +234,26 @@ class Keeper
             $description = $description . '[ Big ] '; 
         }
         return $description;
+    }
+
+    /**
+     * Get the value of email
+     */ 
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set the value of email
+     *
+     * @return  self
+     */ 
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
     }
 
     public function __toString()

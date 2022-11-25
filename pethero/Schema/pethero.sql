@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 08-11-2022 a las 07:03:39
+-- Tiempo de generación: 25-11-2022 a las 08:12:35
 -- Versión del servidor: 8.0.28
 -- Versión de PHP: 7.4.19
 
@@ -26,6 +26,44 @@ USE `pethero`;
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `chats`
+--
+
+CREATE TABLE `chats` (
+  `id` int NOT NULL,
+  `createDate` datetime NOT NULL,
+  `ownerId` int NOT NULL,
+  `keeperId` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cupondetails`
+--
+
+CREATE TABLE `cupondetails` (
+  `id` int NOT NULL,
+  `reserveId` int NOT NULL,
+  `cuponId` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cupons`
+--
+
+CREATE TABLE `cupons` (
+  `id` int NOT NULL,
+  `date` date NOT NULL,
+  `price` double NOT NULL,
+  `credit_card` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `keepers`
 --
 
@@ -34,12 +72,27 @@ CREATE TABLE `keepers` (
   `name` varchar(45) NOT NULL,
   `lastname` varchar(45) NOT NULL,
   `address` varchar(45) NOT NULL,
+  `email` varchar(100) NOT NULL,
   `sizePet` varchar(100) DEFAULT NULL,
   `price` double DEFAULT NULL,
   `startDate` date DEFAULT NULL,
   `endDate` date DEFAULT NULL,
   `days` varchar(100) DEFAULT NULL,
   `userId` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `messages`
+--
+
+CREATE TABLE `messages` (
+  `id` int NOT NULL,
+  `text` varchar(2000) NOT NULL,
+  `date` datetime NOT NULL,
+  `autor` varchar(45) NOT NULL,
+  `chatId` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
@@ -53,6 +106,7 @@ CREATE TABLE `owners` (
   `name` varchar(45) NOT NULL,
   `lastname` varchar(45) NOT NULL,
   `address` varchar(45) NOT NULL,
+  `email` varchar(100) NOT NULL,
   `userId` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
@@ -64,7 +118,7 @@ CREATE TABLE `owners` (
 
 CREATE TABLE `payments` (
   `id` int NOT NULL,
-  `reserveId` int NOT NULL,
+  `cuponId` int NOT NULL,
   `amount` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
@@ -102,8 +156,8 @@ CREATE TABLE `pettypes` (
 --
 
 INSERT INTO `pettypes` (`id`, `type`) VALUES
-(2, 'Gato'),
-(1, 'Perro');
+(1, 'Gato'),
+(2, 'Perro');
 
 -- --------------------------------------------------------
 
@@ -150,12 +204,34 @@ CREATE TABLE `usertypes` (
 --
 
 INSERT INTO `usertypes` (`id`, `type`) VALUES
-(2, 'Keeper'),
-(1, 'Owner');
+(1, 'Keeper'),
+(2, 'Owner');
 
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `chats`
+--
+ALTER TABLE `chats`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_chats_owners_idx` (`ownerId`),
+  ADD KEY `fk_chats_keepers1_idx` (`keeperId`);
+
+--
+-- Indices de la tabla `cupondetails`
+--
+ALTER TABLE `cupondetails`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_cuponDetails_reserves1_idx` (`reserveId`),
+  ADD KEY `fk_cuponDetails_cupons1_idx` (`cuponId`);
+
+--
+-- Indices de la tabla `cupons`
+--
+ALTER TABLE `cupons`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `keepers`
@@ -163,6 +239,13 @@ INSERT INTO `usertypes` (`id`, `type`) VALUES
 ALTER TABLE `keepers`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_keepers_users1_idx` (`userId`);
+
+--
+-- Indices de la tabla `messages`
+--
+ALTER TABLE `messages`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_message_chats1_idx` (`chatId`);
 
 --
 -- Indices de la tabla `owners`
@@ -176,7 +259,7 @@ ALTER TABLE `owners`
 --
 ALTER TABLE `payments`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_payments_reserves1_idx` (`reserveId`);
+  ADD KEY `fk_payments_cupons1_idx` (`cuponId`);
 
 --
 -- Indices de la tabla `pets`
@@ -221,9 +304,33 @@ ALTER TABLE `usertypes`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `chats`
+--
+ALTER TABLE `chats`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `cupondetails`
+--
+ALTER TABLE `cupondetails`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `cupons`
+--
+ALTER TABLE `cupons`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `keepers`
 --
 ALTER TABLE `keepers`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `messages`
+--
+ALTER TABLE `messages`
   MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
@@ -273,10 +380,30 @@ ALTER TABLE `usertypes`
 --
 
 --
+-- Filtros para la tabla `chats`
+--
+ALTER TABLE `chats`
+  ADD CONSTRAINT `fk_chats_keepers1` FOREIGN KEY (`keeperId`) REFERENCES `keepers` (`id`),
+  ADD CONSTRAINT `fk_chats_owners` FOREIGN KEY (`ownerId`) REFERENCES `owners` (`id`);
+
+--
+-- Filtros para la tabla `cupondetails`
+--
+ALTER TABLE `cupondetails`
+  ADD CONSTRAINT `fk_cuponDetails_cupons1` FOREIGN KEY (`cuponId`) REFERENCES `cupons` (`id`),
+  ADD CONSTRAINT `fk_cuponDetails_reserves1` FOREIGN KEY (`reserveId`) REFERENCES `reserves` (`id`);
+
+--
 -- Filtros para la tabla `keepers`
 --
 ALTER TABLE `keepers`
   ADD CONSTRAINT `fk_keepers_users1` FOREIGN KEY (`userId`) REFERENCES `users` (`id`);
+
+--
+-- Filtros para la tabla `messages`
+--
+ALTER TABLE `messages`
+  ADD CONSTRAINT `fk_message_chats1` FOREIGN KEY (`chatId`) REFERENCES `chats` (`id`);
 
 --
 -- Filtros para la tabla `owners`
@@ -288,7 +415,7 @@ ALTER TABLE `owners`
 -- Filtros para la tabla `payments`
 --
 ALTER TABLE `payments`
-  ADD CONSTRAINT `fk_payments_reserves1` FOREIGN KEY (`reserveId`) REFERENCES `reserves` (`id`);
+  ADD CONSTRAINT `fk_payments_cupons1` FOREIGN KEY (`cuponId`) REFERENCES `cupons` (`id`);
 
 --
 -- Filtros para la tabla `pets`

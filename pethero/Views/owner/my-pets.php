@@ -6,7 +6,7 @@ require_once(VIEWS_PATH . 'nav.php');
         <div class="container-fluid">
             <h2 class="mb-4">My Pets</h2>
 
-            <div class="bg-light-alpha p-5">
+            <div class="table-responsive bg-light-alpha p-5">
                 <table class="table">
                     <thead>
                         <th>Image</th>

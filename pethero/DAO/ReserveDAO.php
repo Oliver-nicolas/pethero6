@@ -43,7 +43,6 @@ class ReserveDAO implements IReserveDAO
         } catch (Exception $ex) {
             throw $ex;
         }
-        return false;
     }
 
     public function Accept(Reserve $reserve)
@@ -63,7 +62,6 @@ class ReserveDAO implements IReserveDAO
         } catch (Exception $ex) {
             throw $ex;
         }
-        return false;
     }
 
     public function Decline(Reserve $reserve)
@@ -82,7 +80,6 @@ class ReserveDAO implements IReserveDAO
         } catch (Exception $ex) {
             throw $ex;
         }
-        return false;
     }
 
     public function Search($id)

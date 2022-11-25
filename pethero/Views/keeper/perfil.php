@@ -37,10 +37,16 @@ require_once(VIEWS_PATH . 'nav.php');
                 </div>
 
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-lg-6">
                         <div class="form-group">
                             <label for="">Address <strong class="text-danger">*</strong></label>
                             <input type="text" name="address" value="<?= $keeper->getAddress() ?>" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="">Email <strong class="text-danger">*</strong></label>
+                            <input type="email" name="email" value="<?= $keeper->getEmail() ?>" class="form-control" required>
                         </div>
                     </div>
                 </div>

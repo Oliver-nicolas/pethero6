@@ -6,7 +6,7 @@ require_once(VIEWS_PATH . 'nav.php');
         <div class="container-fluid">
             <h2 class="mb-4">My Reserves</h2>
 
-            <div class="bg-light-alpha p-5">
+            <div class="table-responsive bg-light-alpha p-5">
 
                 <?php if (isset($_SESSION['error'])) { ?>
                     <div class="alert alert-danger alert-dismissable">
@@ -31,8 +31,7 @@ require_once(VIEWS_PATH . 'nav.php');
                         <th>Start Date</th>
                         <th>End Date</th>
                         <th>Video</th>
-                        <th>Cupon</th>
-                        <th class="text-right">State</th>
+                        <th>State</th>
                     </thead>
                     <tbody>
                         <?php
@@ -58,15 +57,22 @@ require_once(VIEWS_PATH . 'nav.php');
                                     }
                                     ?>
                                 </td>
-                                <td><?= $item->getCupon_generated() ?></td>
-                                <td class="text-right">
+                                <td>
                                     <?php
                                     if ($item->getState() != 'Waiting') {
                                         echo $item->getState();
                                     } else {
                                     ?>
-                                        <a class="btn btn-warning" href="<?= FRONT_ROOT ?>Keeper/AcceptReserve/<?= $item->getId() ?>">Accept</a>
-                                        <a class="btn btn-danger" href="<?= FRONT_ROOT ?>Keeper/DeclineReserve/<?= $item->getId() ?>">Decline</a>
+                                        <div class="row pl-3">
+                                            <form action="<?= FRONT_ROOT ?>Keeper/AcceptReserve" method="post">
+                                                <input type="number" name="reserveId" value="<?= $item->getId() ?>" hidden>
+                                                <input class="btn btn-warning mr-1" type="submit" value="Accept">
+                                            </form>
+                                            <form action="<?= FRONT_ROOT ?>Keeper/DeclineReserve" method="post">
+                                                <input type="number" name="reserveId" value="<?= $item->getId() ?>" hidden>
+                                                <input class="btn btn-danger" type="submit" value="Decline">
+                                            </form>
+                                        </div>
                                     <?php
                                     }
                                     ?>
