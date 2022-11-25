@@ -29,7 +29,7 @@ require_once(VIEWS_PATH . 'nav.php');
 
                             <div class="col-md-3 col-lg-3 col-xl-3 mb-4 mb-md-0">
 
-                                <h5 class="font-weight-bold mb-3 text-center text-lg-start">Keepers</h5>
+                                <h5 class="font-weight-bold mb-3 text-center text-lg-start">Owners</h5>
 
                                 <div class="card">
                                     <div class="card-body">

@@ -11,7 +11,7 @@
      <link rel="stylesheet" type="text/css" href="<?= CSS_PATH ?>bootstrap.min.css">
      <link rel="stylesheet" type="text/css" href="<?= CSS_PATH ?>estilos.css">
 
-     <title>Framework Example</title>
+     <title>Pet Hero</title>
 </head>
 
 <body>

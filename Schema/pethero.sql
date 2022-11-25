@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 25-11-2022 a las 08:12:35
+-- Tiempo de generación: 25-11-2022 a las 12:38:04
 -- Versión del servidor: 8.0.28
 -- Versión de PHP: 7.4.19
 
@@ -56,9 +56,11 @@ CREATE TABLE `cupondetails` (
 
 CREATE TABLE `cupons` (
   `id` int NOT NULL,
+  `nroCupon` varchar(45) NOT NULL,
   `date` date NOT NULL,
   `price` double NOT NULL,
-  `credit_card` varchar(45) NOT NULL
+  `credit_card` varchar(45) NOT NULL,
+  `ownerEmail` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
@@ -130,7 +132,7 @@ CREATE TABLE `payments` (
 
 CREATE TABLE `pets` (
   `id` int NOT NULL,
-  `race` varchar(45) NOT NULL,
+  `breed` varchar(45) NOT NULL,
   `size` varchar(45) NOT NULL,
   `observations` varchar(500) NOT NULL,
   `image` varchar(200) NOT NULL,

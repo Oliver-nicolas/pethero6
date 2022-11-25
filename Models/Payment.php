@@ -5,7 +5,7 @@ namespace Models;
 class Payment
 {
     private $id;
-    private $reserve;
+    private $cupon;
     private $amount;
 
     /**
@@ -29,26 +29,6 @@ class Payment
     }
 
     /**
-     * Get the value of reserve
-     */
-    public function getReserve()
-    {
-        return $this->reserve;
-    }
-
-    /**
-     * Set the value of reserve
-     *
-     * @return  self
-     */
-    public function setReserve($reserve)
-    {
-        $this->reserve = $reserve;
-
-        return $this;
-    }
-
-    /**
      * Get the value of amount
      */
     public function getAmount()
@@ -64,6 +44,26 @@ class Payment
     public function setAmount($amount)
     {
         $this->amount = $amount;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of cupon
+     */ 
+    public function getCupon()
+    {
+        return $this->cupon;
+    }
+
+    /**
+     * Set the value of cupon
+     *
+     * @return  self
+     */ 
+    public function setCupon($cupon)
+    {
+        $this->cupon = $cupon;
 
         return $this;
     }

@@ -4,8 +4,7 @@
 <main class="py-5">
      <section id="listado" class="mb-5">
           <div class="container text-center">
-               <h1 class="m-4">PET HERO</h1>
-               
+               <img src="Views/img/pet hero logo.png" alt="" width="350">
           </div>
      </section>
 </main>

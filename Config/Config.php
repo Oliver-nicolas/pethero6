@@ -2,7 +2,7 @@
 
 define("ROOT", dirname(__DIR__) . "/");
 //Path to your project's root folder
-define("FRONT_ROOT", "/pethero/");
+define("FRONT_ROOT", "/TPS/petheroFinal/");
 define("VIEWS_PATH", "Views/");
 define("UPLOADS_PATH", "uploads/");
 define("CSS_PATH", FRONT_ROOT.VIEWS_PATH . "css/");

@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
      <span class="navbar-text">
-          <strong>Framework</strong>
+          <img src="Views/img/pet hero logo.png" alt="" width="50">
      </span>
      <ul class="navbar-nav ml-auto">
           <?php
@@ -21,6 +21,9 @@
                     </li>
                     <li class="nav-item">
                          <a class="nav-link" href="<?= FRONT_ROOT ?>Keeper/ShowMyReserves">My Reserves</a>
+                    </li>
+                    <li class="nav-item">
+                         <a class="nav-link" href="<?= FRONT_ROOT ?>Keeper/ShowMyCupons">My Cupons</a>
                     </li>
                     <li class="nav-item">
                          <a class="nav-link" href="<?= FRONT_ROOT ?>Keeper/ShowMyChats">My Chats</a>
@@ -47,7 +50,7 @@
                }
                ?>
                <li class="nav-item">
-                    <a class="nav-link" href="<?= FRONT_ROOT ?>User/Logout">Cerrar Sesión</a>
+                    <a class="btn btn-outline-danger" href="<?= FRONT_ROOT ?>User/Logout">Logout</a>
                </li>
           <?php
           } else {

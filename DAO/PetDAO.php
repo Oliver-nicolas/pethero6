@@ -28,9 +28,9 @@ class PetDAO implements IPetDAO
     {
         try {
 
-            $query = "INSERT INTO " . $this->tableName . " (id, race, size, observations, image, vaccinationPlan, video, ownerId, petTypeId) VALUES (:id, :race, :size, :observations, :image, :vaccinationPlan, :video, :ownerId, :petTypeId);";
+            $query = "INSERT INTO " . $this->tableName . " (id, breed, size, observations, image, vaccinationPlan, video, ownerId, petTypeId) VALUES (:id, :breed, :size, :observations, :image, :vaccinationPlan, :video, :ownerId, :petTypeId);";
             $parameters["id"] = 0;
-            $parameters["race"] = $pet->getRace();
+            $parameters["breed"] = $pet->getBreed();
             $parameters["size"] = $pet->getSize();
             $parameters["observations"] = $pet->getObservations();
             $parameters["image"] = $pet->getImage();
@@ -63,7 +63,7 @@ class PetDAO implements IPetDAO
             foreach ($resultSet as $row) {
                 $pet = new Pet();
                 $pet->setId($row["id"]);
-                $pet->setRace($row["race"]);
+                $pet->setBreed($row["breed"]);
                 $pet->setSize($row["size"]);
                 $pet->setObservations($row["observations"]);
                 $pet->setImage($row["image"]);
@@ -96,7 +96,7 @@ class PetDAO implements IPetDAO
             foreach ($resultSet as $row) {
                 $pet = new Pet();
                 $pet->setId($row["id"]);
-                $pet->setRace($row["race"]);
+                $pet->setBreed($row["breed"]);
                 $pet->setSize($row["size"]);
                 $pet->setObservations($row["observations"]);
                 $pet->setImage($row["image"]);

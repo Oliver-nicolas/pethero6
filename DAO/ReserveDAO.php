@@ -64,6 +64,23 @@ class ReserveDAO implements IReserveDAO
         }
     }
 
+    public function Pay($id){
+        try {
+
+            $query = "UPDATE " . $this->tableName . " SET state=:state WHERE id = :id;";
+            $parameters["id"] = $id;
+            $parameters["state"] = 'Paid';
+            
+            $this->connection = Connection::GetInstance();
+
+            $this->connection->ExecuteNonQuery($query, $parameters);
+
+            return true;
+        } catch (Exception $ex) {
+            throw $ex;
+        }
+    }
+
     public function Decline(Reserve $reserve)
     {
         try {
@@ -180,6 +197,68 @@ class ReserveDAO implements IReserveDAO
             $query = "SELECT * FROM " . $this->tableName . " WHERE state <> 'Waiting' AND (( :startDate >= startDate AND :endDate <= endDate) OR startDate BETWEEN :startDate AND :endDate OR endDate BETWEEN :startDate AND :endDate )";
             $parameters["startDate"] = $startDate;
             $parameters["endDate"] = $endDate;
+
+            $this->connection = Connection::GetInstance();
+
+            $resultSet = $this->connection->Execute($query, $parameters);
+
+            foreach ($resultSet as $row) {
+                $reserve = new Reserve();
+                $reserve->setId($row["id"]);
+                $reserve->setKeeper($this->keeperDAO->Search($row["keeperId"]));
+                $reserve->setPet($this->petDAO->Search($row["petId"]));
+                $reserve->setStartDate($row["startDate"]);
+                $reserve->setEndDate($row["endDate"]);
+                $reserve->setState($row["state"]);
+                $reserve->setCupon_generated($row["cupon_generated"]);
+
+                array_push($reserveList, $reserve);
+            }
+
+            return $reserveList;
+        } catch (Exception $ex) {
+            throw $ex;
+        }
+    }
+
+    public function ListForCuponByKeeper($keeperId)
+    {
+        try {
+            $reserveList = array();
+
+            $query = "SELECT * FROM " . $this->tableName . " WHERE keeperId = :keeperId AND state = 'Accepted'";
+            $parameters["keeperId"] = $keeperId;
+
+            $this->connection = Connection::GetInstance();
+
+            $resultSet = $this->connection->Execute($query, $parameters);
+
+            foreach ($resultSet as $row) {
+                $reserve = new Reserve();
+                $reserve->setId($row["id"]);
+                $reserve->setKeeper($this->keeperDAO->Search($row["keeperId"]));
+                $reserve->setPet($this->petDAO->Search($row["petId"]));
+                $reserve->setStartDate($row["startDate"]);
+                $reserve->setEndDate($row["endDate"]);
+                $reserve->setState($row["state"]);
+                $reserve->setCupon_generated($row["cupon_generated"]);
+
+                array_push($reserveList, $reserve);
+            }
+
+            return $reserveList;
+        } catch (Exception $ex) {
+            throw $ex;
+        }
+    }
+
+    public function ListForCuponByOwner($ownerId)
+    {
+        try {
+            $reserveList = array();
+
+            $query = "SELECT s.* FROM " . $this->tableName . " s INNER JOIN pets p ON p.id = s.petId WHERE p.ownerId = :ownerId AND state = 'Accepted'";
+            $parameters["ownerId"] = $ownerId;
 
             $this->connection = Connection::GetInstance();
 

@@ -10,7 +10,7 @@ require_once(VIEWS_PATH . 'nav.php');
                 <table class="table">
                     <thead>
                         <th>Image</th>
-                        <th>Race</th>
+                        <th>Breed</th>
                         <th>Pet Type</th>
                         <th>Size</th>
                         <th>Observations</th>
@@ -23,7 +23,7 @@ require_once(VIEWS_PATH . 'nav.php');
                         ?>
                             <tr>
                                 <td><img src="<?= FRONT_ROOT . UPLOADS_PATH . $item->getImage() ?>" alt="" width="100"></td>
-                                <td><?= $item->getRace() ?></td>
+                                <td><?= $item->getBreed() ?></td>
                                 <td><?= $item->getPetType() ?></td>
                                 <td><?= $item->getSize() ?></td>
                                 <td><?= $item->getObservations() ?></td>
