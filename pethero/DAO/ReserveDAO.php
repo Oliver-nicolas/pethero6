@@ -213,7 +213,6 @@ class ReserveDAO implements IReserveDAO
 
     public function generateEmail($reserve){
 
-
         $ownerList =  $this->ownerDAO->GetAll();
 
         foreach($ownerList as $aux){

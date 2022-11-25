@@ -24,56 +24,36 @@ require_once(VIEWS_PATH . 'nav.php');
 
                 <table class="table mt-3">
                     <thead>
-                        <th>Image</th>
-                        <th>Breed</th>
-                        <th>Pet Type</th>
-                        <th>Size</th>
+                        <th>ID Invoice</th>
+                        <th>Owner</th>
+                        <th>Keeper</th>
+                        <th>Pet Name</th>
                         <th>Start Date</th>
                         <th>End Date</th>
-                        <th>Video</th>
-                        <th>Cupon</th>
+                        <th>ID Reserve</th>
                         <th class="text-right">State</th>
                     </thead>
                     <tbody>
                         <?php
-                        foreach ($reserves as $item) {
+                        foreach ($invoices as $item) {
                         ?>
                             <tr>
-                                <td><img src="<?= FRONT_ROOT . UPLOADS_PATH . $item->getPet()->getImage() ?>" alt="" width="100"></td>
-                                <td><?= $item->getPet()->getBreed() ?></td>
-                                <td><?= $item->getPet()->getPetType() ?></td>
-                                <td><?= $item->getPet()->getSize() ?></td>
-                                <td><?= $item->getStartDate() ?></td>
-                                <td><?= $item->getEndDate() ?></td>
-                                <td>
-                                    <?php
-                                    if ($item->getPet()->getVideo() == null) {
-                                    ?>
-                                        Without Video
-                                    <?php
-                                    } else {
-                                    ?>
-                                        <a href="<?= FRONT_ROOT . UPLOADS_PATH . $item->getPet()->getVideo() ?>">Watch Video</a>
-                                    <?php
-                                    }
-                                    ?>
-                                </td>
-                                <td><?= $item->getCupon_generated() ?></td>
-                                <td class="text-right">
-                                    <?php
-                                    if ($item->getState() != 'Waiting') {
-                                        echo $item->getState();
-                                    } else {
-                                    ?>
-                                        <a class="btn btn-warning" href="<?= FRONT_ROOT ?>Keeper/AcceptReserve/<?= $item->getId() ?>">Accept</a>
-                                        <a class="btn btn-danger" href="<?= FRONT_ROOT ?>Keeper/DeclineReserve/<?= $item->getId() ?>">Decline</a>
+                                <td><?= $item->getId() ?></td>
+                                <td><?= $item->getOwner()->getLastname() ?></td>
+                                <td><?= $item->getKeeper()->getLastname() ?></td>
+                                <td><?= $item->getPet()->getName() ?></td>
+                                <td><?= $item->getReserve()->getStartDate() ?></td>
+                                <td><?= $item->getReserve()->getEndDate() ?></td>
+                                <td><?= $item->getReserve()->Cupon_generated() ?></td>
+                                
+                                       
                                     <?php
                                     }
                                     ?>
                                 </td>
                             </tr>
                         <?php
-                        }
+                        
                         ?>
                     </tbody>
                 </table>

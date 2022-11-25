@@ -144,7 +144,7 @@ class OwnerController
 
     public function AddLike($keeperId){
         $keeper = $this->keeperDAO->SearchByUserId($keeperId);
-        $keeper->setScore(+1);
+        $keeper->setAddScore();
        
     }
 

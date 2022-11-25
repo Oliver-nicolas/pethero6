@@ -55,7 +55,7 @@ class KeeperController
             $keeper->setDays($days);
             $keeper->setSizePet($sizePet);
 
-            if ($this->keeperDAO->Update($keeper)) {
+            if ($this->keeperDAO->Add($keeper)) {
                 $_SESSION['success'] = 'Keeper updated';
             } else {
                 $_SESSION['error'] = 'Keeper could not be updated';

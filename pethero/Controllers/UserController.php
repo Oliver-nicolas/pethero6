@@ -96,6 +96,7 @@ class UserController
                 }
 
                 $this->ShowLogin();
+                $_SESSION['success'] = 'Successful log In';
                 return;
             } else {
                 $_SESSION['error'] = 'The username exists';
